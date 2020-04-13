@@ -5,7 +5,7 @@
 
 import CloudKit
 
-class PersonController {
+class DiscController {
     // Mark: - Source of Truth and Shared instance
 
 
@@ -17,5 +17,4 @@ class PersonController {
     // Mark: - Update
 
     // Mark: - Delete
-
 }

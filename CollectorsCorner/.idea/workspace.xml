@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4fad9c6-9abb-47b3-896e-24ec523b5f1f" name="Default Changelist" comment="" />
+    <list default="true" id="b4fad9c6-9abb-47b3-896e-24ec523b5f1f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/CollectionController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/DiscController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/PersonController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/PersonController.swift" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,7 +18,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1aUmfiWoVxfz482432jQYyNBaIi" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,7 +30,6 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="CollectorsCorner" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -49,6 +56,8 @@
       <updated>1586798651845</updated>
       <workItem from="1586798655765" duration="1363000" />
       <workItem from="1586800064362" duration="449000" />
+      <workItem from="1586800553716" duration="267000" />
+      <workItem from="1586800851861" duration="455000" />
     </task>
     <servers />
   </component>
