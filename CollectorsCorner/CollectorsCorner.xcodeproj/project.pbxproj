@@ -14,6 +14,8 @@
 		349BA1962444D0D50099A2A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349BA1942444D0D50099A2A0 /* LaunchScreen.storyboard */; };
 		349BA1A12444D0FE0099A2A0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349BA1A02444D0FE0099A2A0 /* CloudKit.framework */; };
 		349BA1A92444D22E0099A2A0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1A82444D22E0099A2A0 /* Person.swift */; };
+		349BA1AB2444D2650099A2A0 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1AA2444D2650099A2A0 /* Collection.swift */; };
+		349BA1AD2444D2790099A2A0 /* Disc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1AC2444D2790099A2A0 /* Disc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		349BA19E2444D0FC0099A2A0 /* CollectorsCorner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CollectorsCorner.entitlements; sourceTree = "<group>"; };
 		349BA1A02444D0FE0099A2A0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		349BA1A82444D22E0099A2A0 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		349BA1AA2444D2650099A2A0 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		349BA1AC2444D2790099A2A0 /* Disc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				349BA1A82444D22E0099A2A0 /* Person.swift */,
+				349BA1AA2444D2650099A2A0 /* Collection.swift */,
+				349BA1AC2444D2790099A2A0 /* Disc.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,8 +215,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				349BA1A92444D22E0099A2A0 /* Person.swift in Sources */,
+				349BA1AD2444D2790099A2A0 /* Disc.swift in Sources */,
 				349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */,
 				349BA18C2444D0D50099A2A0 /* SceneDelegate.swift in Sources */,
+				349BA1AB2444D2650099A2A0 /* Collection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
