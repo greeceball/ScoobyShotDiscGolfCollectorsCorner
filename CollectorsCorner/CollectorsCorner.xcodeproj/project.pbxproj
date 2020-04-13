@@ -13,6 +13,7 @@
 		349BA1932444D0D50099A2A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 349BA1922444D0D50099A2A0 /* Assets.xcassets */; };
 		349BA1962444D0D50099A2A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349BA1942444D0D50099A2A0 /* LaunchScreen.storyboard */; };
 		349BA1A12444D0FE0099A2A0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349BA1A02444D0FE0099A2A0 /* CloudKit.framework */; };
+		349BA1A92444D22E0099A2A0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1A82444D22E0099A2A0 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		349BA1972444D0D50099A2A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		349BA19E2444D0FC0099A2A0 /* CollectorsCorner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CollectorsCorner.entitlements; sourceTree = "<group>"; };
 		349BA1A02444D0FE0099A2A0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		349BA1A82444D22E0099A2A0 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		349BA1A52444D18E0099A2A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				349BA1A82444D22E0099A2A0 /* Person.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				349BA1A92444D22E0099A2A0 /* Person.swift in Sources */,
 				349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */,
 				349BA18C2444D0D50099A2A0 /* SceneDelegate.swift in Sources */,
 			);
