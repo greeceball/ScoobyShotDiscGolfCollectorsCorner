@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4fad9c6-9abb-47b3-896e-24ec523b5f1f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/CollectionController.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/DiscController.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollectorsCorner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/CollectionController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/CollectionController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/DiscController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/DiscController.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/PersonController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/PersonController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/Collection.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/Collection.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/Disc.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/Disc.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/Person.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/Person.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +33,13 @@
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="CollectorsCorner" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunManager">
     <configuration name="CollectorsCorner" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CollectorsCorner" TARGET_NAME="CollectorsCorner" CONFIG_NAME="Debug" SCHEME_NAME="CollectorsCorner" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" RUN_TARGET_PROJECT_NAME="CollectorsCorner" RUN_TARGET_NAME="CollectorsCorner" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
@@ -57,7 +65,7 @@
       <workItem from="1586798655765" duration="1363000" />
       <workItem from="1586800064362" duration="449000" />
       <workItem from="1586800553716" duration="267000" />
-      <workItem from="1586800851861" duration="455000" />
+      <workItem from="1586800851861" duration="2887000" />
     </task>
     <servers />
   </component>
@@ -65,13 +73,21 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="397" y="199" key="SettingsEditor" timestamp="1586800052525">
+    <state x="573" y="242" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1586806026653">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="397" y="199" key="SettingsEditor/0.0.1792.1120/-1920.-430.1920.1080@0.0.1792.1120" timestamp="1586800052525" />
+    <state x="573" y="242" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1792.1120/-1920.-430.1920.1080@0.0.1792.1120" timestamp="1586806026653" />
+    <state x="397" y="199" key="SettingsEditor" timestamp="1586806182453">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="397" y="199" key="SettingsEditor/0.0.1792.1120/-1920.-430.1920.1080@0.0.1792.1120" timestamp="1586806182453" />
     <state x="573" y="392" key="com.intellij.ide.util.TipDialog" timestamp="1586800558260">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="573" y="392" key="com.intellij.ide.util.TipDialog/0.0.1792.1120/-1920.-430.1920.1080@0.0.1792.1120" timestamp="1586800558260" />
+    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1586805837933">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120/-1920.-430.1920.1080@0.0.1792.1120" timestamp="1586805837933" />
   </component>
 </project>
