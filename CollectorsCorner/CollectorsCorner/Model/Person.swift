@@ -41,3 +41,32 @@ class Person {
         self.ckRecordID = ckRecordID
     }
 }
+
+extension Person {
+    convenience init?(ckRecord: CKRecord) {
+        guard let profileImage = ckRecord[PersonConstants.profileImageKey] as? UIImage,
+              let username = ckRecord[PersonConstants.usernameKey] as? String,
+              let name = ckRecord[PersonConstants.nameKey] as? String,
+              let email = ckRecord[PersonConstants.emailKey] as? String,
+              let state = ckRecord[PersonConstants.stateKey] as? String,
+              let yearsCollecting = ckRecord[PersonConstants.yearsCollectingKey] as? Int,
+              let timestamp = ckRecord[PersonConstants.timestampKey] as? Date
+              else { return nil }
+        self.init(profileImage: profileImage, username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting, timeStamp: timestamp)
+    }
+}
+
+extension  CKRecord {
+    convenience init(user: Person) {
+        self.init(recordType: PersonConstants.recordTypeKey, recordID: user.ckRecordID)
+        self.setValuesForKeys([
+            PersonConstants.profileImageKey : user.profileImage,
+            PersonConstants.usernameKey : user.username,
+            PersonConstants.nameKey : user.name,
+            PersonConstants.emailKey : user.email,
+            PersonConstants.stateKey : user.state,
+            PersonConstants.yearsCollectingKey : user.yearsCollecting,
+            PersonConstants.timestampKey : user.timestamp
+        ])
+    }
+}
