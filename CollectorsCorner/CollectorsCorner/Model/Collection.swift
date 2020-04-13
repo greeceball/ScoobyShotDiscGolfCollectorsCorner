@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class Collection {
+    var collectionArray: [Disc] = []
+
+    init(disc: Disc) {
+        collectionArray.append(disc)
+    }
+}
