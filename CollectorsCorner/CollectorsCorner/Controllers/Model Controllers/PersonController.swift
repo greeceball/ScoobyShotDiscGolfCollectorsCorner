@@ -7,15 +7,18 @@ import CloudKit
 import UIKit
 
 class PersonController {
-    // Mark: - Source of Truth and Shared instance
+    // Mark: - Shared instance
     static let shared = PersonController()
-    var users: [Person] = []
+
+    // Mark: - Source of Truth
+    var collectors: [Person] = []
 
     // Mark: - CRUD Func's
     // Mark: - Create
-    func createUser(profileImage: UIImage, username: String, name: String, email: String?, state: String, yearsCollecting: Int?) {
-        guard let email = email, !email.isEmpty, let yearsCollecting = yearsCollecting, yearsCollecting != 0 else { return }
-        Person.init(profileImage: profileImage, username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting)
+    func createUser(profileImage: UIImage, username: String, name: String, email: String, state: String, yearsCollecting: Int) {
+        let newUser = Person.init(profileImage: profileImage, username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting)
+        collectors.append(newUser)
+
     }
 
 

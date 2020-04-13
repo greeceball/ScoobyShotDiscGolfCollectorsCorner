@@ -7,10 +7,10 @@ import CloudKit
 
 class CollectionController {
     // Mark: - Source of Truth and Shared instance
-
+    var collectionArray: [Disc] = []
 
     // Mark: - CRUD Func's
-    // Mark: - Create
+
 
     // Mark: - Read
 

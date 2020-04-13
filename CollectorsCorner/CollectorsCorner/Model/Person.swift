@@ -7,21 +7,37 @@
 //
 
 import UIKit
+import CloudKit
+
+struct PersonConstants{
+    static let profileImageKey = "profileImage"
+    static let usernameKey = "username"
+    static let nameKey = "name"
+    static let emailKey = "email"
+    static let stateKey = "state"
+    static let yearsCollectingKey = "yearsCollecting"
+    static let timestampKey = "timestamp"
+    static let recordTypeKey = "User"
+}
 
 class Person {
     var profileImage: UIImage
     let username: String
     let name: String
-    let email: String?
+    var email: String = ""
     let state: String
-    let yearsCollecting: Int?
+    var yearsCollecting: Int = 0
+    let timestamp: Date
+    let ckRecordID: CKRecord.ID
 
-    init(profileImage: UIImage, username: String, name: String, email: String?, state: String, yearsCollecting: Int?) {
+    init(profileImage: UIImage, username: String, name: String, email: String, state: String, yearsCollecting: Int, timeStamp: Date = Date(), ckRecordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
         self.profileImage = profileImage
         self.name = name
         self.username = username
         self.email = email
         self.state = state
         self.yearsCollecting = yearsCollecting
+        self.timestamp = timeStamp
+        self.ckRecordID = ckRecordID
     }
 }
