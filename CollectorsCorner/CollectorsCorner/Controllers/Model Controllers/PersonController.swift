@@ -13,6 +13,8 @@ class PersonController {
     // Mark: - Source of Truth
     var collectors: [Person] = []
 
+    let privateDB = CKContainer.default().privateCloudDatabase
+    
     // Mark: - CRUD Func's
     // Mark: - Create
     func createUser(profileImage: UIImage, username: String, name: String, email: String, state: String, yearsCollecting: Int) {
@@ -28,4 +30,9 @@ class PersonController {
 
     // Mark: - Delete
 
+
+    // Mark: - Helper Func's
+    private func fetchAppleUserReference(completion: @escaping (Result<CKRecord.Reference?, UserError>) -> Void) {
+
+    }
 }
