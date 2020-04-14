@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4fad9c6-9abb-47b3-896e-24ec523b5f1f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Helpers + Extensions/CollectionError.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Helpers + Extensions/DiscError.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Helpers + Extensions/UserError.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/UserController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Resources/Assets.xcassets/AppIcon.appiconset/noImage.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CollectorsCorner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/PersonController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/PersonController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/PersonController.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/Collection.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/Collection.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/Disc.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/Disc.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/Person.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/User.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +30,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="CollectorsCorner" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -65,12 +68,15 @@
       <workItem from="1586800064362" duration="449000" />
       <workItem from="1586800553716" duration="267000" />
       <workItem from="1586800851861" duration="7735000" />
-      <workItem from="1586878203540" duration="3358000" />
+      <workItem from="1586878203540" duration="10209000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="573" y="242" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1586806026653">

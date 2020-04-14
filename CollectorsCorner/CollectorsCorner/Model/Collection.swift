@@ -6,12 +6,14 @@
 //  Copyright © 2020 Colby_Harris. All rights reserved.
 //
 
-//import Foundation
+//import UIKit
+//import CloudKit
+//
+//struct CollectionStrings {
+//    static let recordTypeKey = "Collection"
+//    fileprivate static let
+//}
 //
 //class Collection {
-//    var collectionArray: [Disc] = []
 //
-//    init(disc: Disc) {
-//        collectionArray.append(disc)
-//    }
 //}

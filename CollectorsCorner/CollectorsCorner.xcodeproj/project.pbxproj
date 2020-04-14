@@ -13,11 +13,11 @@
 		349BA1932444D0D50099A2A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 349BA1922444D0D50099A2A0 /* Assets.xcassets */; };
 		349BA1962444D0D50099A2A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349BA1942444D0D50099A2A0 /* LaunchScreen.storyboard */; };
 		349BA1A12444D0FE0099A2A0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349BA1A02444D0FE0099A2A0 /* CloudKit.framework */; };
-		349BA1A92444D22E0099A2A0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1A82444D22E0099A2A0 /* Person.swift */; };
+		349BA1A92444D22E0099A2A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1A82444D22E0099A2A0 /* User.swift */; };
 		349BA1AB2444D2650099A2A0 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1AA2444D2650099A2A0 /* Collection.swift */; };
 		349BA1AD2444D2790099A2A0 /* Disc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1AC2444D2790099A2A0 /* Disc.swift */; };
 		D95F1278B5529FB10DE646FD /* DiscController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F1D736EDF842D613903F9 /* DiscController.swift */; };
-		D95F12FD9FCF5C7813CD6680 /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F13759FD77EB2B5218A97 /* PersonController.swift */; };
+		D95F12FD9FCF5C7813CD6680 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F13759FD77EB2B5218A97 /* UserController.swift */; };
 		D95F157E7973AE3EC91913F7 /* CollectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F19EDCFBF958C42627324 /* CollectionError.swift */; };
 		D95F1AC68D8D16DF851C99C9 /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F16E411EDE998496366E8 /* UserError.swift */; };
 		D95F1CC014429218374DCD11 /* CollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F1B2F763159AFBDB58FEA /* CollectionController.swift */; };
@@ -34,11 +34,11 @@
 		349BA1972444D0D50099A2A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		349BA19E2444D0FC0099A2A0 /* CollectorsCorner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CollectorsCorner.entitlements; sourceTree = "<group>"; };
 		349BA1A02444D0FE0099A2A0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		349BA1A82444D22E0099A2A0 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		349BA1A82444D22E0099A2A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		349BA1AA2444D2650099A2A0 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		349BA1AC2444D2790099A2A0 /* Disc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disc.swift; sourceTree = "<group>"; };
 		D95F112CB0830E92F32D0390 /* DiscError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscError.swift; sourceTree = "<group>"; };
-		D95F13759FD77EB2B5218A97 /* PersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
+		D95F13759FD77EB2B5218A97 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		D95F16E411EDE998496366E8 /* UserError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
 		D95F19EDCFBF958C42627324 /* CollectionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionError.swift; sourceTree = "<group>"; };
 		D95F1B2F763159AFBDB58FEA /* CollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionController.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		349BA1A42444D1850099A2A0 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D95F13759FD77EB2B5218A97 /* PersonController.swift */,
+				D95F13759FD77EB2B5218A97 /* UserController.swift */,
 				D95F1D736EDF842D613903F9 /* DiscController.swift */,
 				D95F1B2F763159AFBDB58FEA /* CollectionController.swift */,
 			);
@@ -136,7 +136,7 @@
 		349BA1A52444D18E0099A2A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				349BA1A82444D22E0099A2A0 /* Person.swift */,
+				349BA1A82444D22E0099A2A0 /* User.swift */,
 				349BA1AA2444D2650099A2A0 /* Collection.swift */,
 				349BA1AC2444D2790099A2A0 /* Disc.swift */,
 			);
@@ -232,12 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				349BA1A92444D22E0099A2A0 /* Person.swift in Sources */,
+				349BA1A92444D22E0099A2A0 /* User.swift in Sources */,
 				349BA1AD2444D2790099A2A0 /* Disc.swift in Sources */,
 				349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */,
 				349BA18C2444D0D50099A2A0 /* SceneDelegate.swift in Sources */,
 				349BA1AB2444D2650099A2A0 /* Collection.swift in Sources */,
-				D95F12FD9FCF5C7813CD6680 /* PersonController.swift in Sources */,
+				D95F12FD9FCF5C7813CD6680 /* UserController.swift in Sources */,
 				D95F1278B5529FB10DE646FD /* DiscController.swift in Sources */,
 				D95F1CC014429218374DCD11 /* CollectionController.swift in Sources */,
 				D95F1AC68D8D16DF851C99C9 /* UserError.swift in Sources */,
