@@ -7,6 +7,7 @@
 //
 
 import UIKit.UIImage
+
 import CloudKit
 
 struct DiscStrings {
@@ -21,12 +22,11 @@ struct DiscStrings {
     fileprivate static let runKey = "run"
     fileprivate static let photoAssetKey = "photoAsset"
     fileprivate static let userReferenceKey = "userReference"
-
+    
 }
 
 class Disc {
-
-
+    
     let brand: String
     let mold: String
     let color: String?
@@ -130,3 +130,6 @@ extension  CKRecord {
         }
     }
 }
+    
+
+
