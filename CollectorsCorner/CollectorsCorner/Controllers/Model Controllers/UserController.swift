@@ -10,9 +10,8 @@ class UserController {
     // Mark: - Shared instance
     static let shared = UserController()
 
-    // Mark: - Source of Truth
+    // Mark: - Source of Truth and Properties
     var collectors: [User] = []
-
     var currentUser: User?
     let publicDB = CKContainer.default().publicCloudDatabase
     
@@ -28,7 +27,7 @@ class UserController {
                 // Unwrap reference. If not reference exists return failure
                 guard let reference = reference else { return completion(.failure(.noUserLoggedIn))}
                 // If Success create new user
-                let newUser = User.init(username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting, profileImage: profileImage)
+                let newUser = User.init(username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting, appleUserReference: reference, profileImage: profileImage)
                 // Create a CKRecord from the user just created
                 let record = CKRecord(user: newUser)
                 // Call the save method on the database, pass in record
@@ -50,7 +49,6 @@ class UserController {
             }
         }
     }
-
 
     // Mark: - Read
     func fetchUser(completion: @escaping (Result<User?, UserError>) -> Void) {
@@ -93,23 +91,32 @@ class UserController {
     }
 
     // Mark: - Helper Func's
-
     func fetchUserFor(_ collection: Collection, completion: @escaping (Result<User, UserError>) -> Void) {
         guard let userID = collection.userReference?.recordID else { return completion(.failure(.noUserForCollection))}
+
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["recordID", userID])
+        let query = CKQuery(recordType: UserConstants.recordTypeKey, predicate: predicate)
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let error = error {
+                completion(.failure(.ckError(error)))
+            }
+            guard let record = records?.first,
+            let foundUser = User(ckRecord: record)
+                    else { return completion(.failure(.couldNotUnwrap))}
+            print("Found user for collection.")
+            completion(.success(foundUser))
+        }
     }
 
     private func fetchAppleUserReference(completion: @escaping (Result<CKRecord.Reference?, UserError>) -> Void) {
-
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
                 completion(.failure(.ckError(error)))
             }
-
             if let recordID = recordID {
                 let reference = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
                 completion(.success(reference))
             }
         }
     }
-
 }

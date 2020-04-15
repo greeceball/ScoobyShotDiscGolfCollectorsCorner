@@ -59,7 +59,7 @@ class User {
         }
     }
 
-    init(username: String, name: String, email: String, state: String, yearsCollecting: Int, timeStamp: Date = Date(), ckRecordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), profileImage: UIImage) {
+    init(username: String, name: String, email: String, state: String, yearsCollecting: Int, timeStamp: Date = Date(), appleUserReference: CKRecord.Reference, ckRecordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), profileImage: UIImage) {
 
         self.name = name
         self.username = username
@@ -80,9 +80,10 @@ extension User {
               let email = ckRecord[UserConstants.emailKey] as? String,
               let state = ckRecord[UserConstants.stateKey] as? String,
               let yearsCollecting = ckRecord[UserConstants.yearsCollectingKey] as? Int,
-              let timestamp = ckRecord[UserConstants.timestampKey] as? Date
+              let timestamp = ckRecord[UserConstants.timestampKey] as? Date,
+              let appleUserRef = ckRecord[UserConstants.appleUserRefKey] as? CKRecord.Reference
               else { return nil }
-        self.init(username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting, timeStamp: timestamp, profileImage: profileImage)
+        self.init(username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting, timeStamp: timestamp, appleUserReference: appleUserRef, profileImage: profileImage)
     }
 }
 
