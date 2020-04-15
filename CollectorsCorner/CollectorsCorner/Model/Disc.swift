@@ -10,6 +10,7 @@ import UIKit.UIImage
 import CloudKit
 
 struct DiscStrings {
+
     static let recordTypeKey = "Disc"
     fileprivate static let discImageKey = "discImage"
     fileprivate static let brandKey = "brand"
@@ -20,17 +21,11 @@ struct DiscStrings {
     fileprivate static let runKey = "run"
     fileprivate static let photoAssetKey = "photoAsset"
     fileprivate static let userReferenceKey = "userReference"
+
 }
 
 class Disc {
-    var discImage: UIImage? {
-        get {
-            guard let photoData = self.photoData else { return nil }
-            return UIImage(data: photoData)
-        } set {
-            photoData = newValue?.jpegData(compressionQuality: 0.5)
-        }
-    }
+
 
     let brand: String
     let mold: String
@@ -60,8 +55,17 @@ class Disc {
         }
     }
 
+    var discImage: UIImage? {
+        get {
+            guard let photoData = self.photoData else { return nil }
+            return UIImage(data: photoData)
+        } set {
+            photoData = newValue?.jpegData(compressionQuality: 0.5)
+        }
+    }
+
     init(discImage: UIImage, brand: String, mold: String, color: String?, plastic: String, flightPath: String?, run: Int?, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
-        self.discImage = discImage
+
         self.brand = brand
         self.mold = mold
         self.color = color
@@ -70,6 +74,7 @@ class Disc {
         self.run = run
         self.userReference = userReference
         self.recordID = recordID
+        self.discImage = discImage
     }
 }
 
@@ -91,10 +96,10 @@ extension Disc {
                 let data = try Data(contentsOf: photoAsset.fileURL!)
                 foundPhoto = UIImage(data: data)
             } catch {
-                print("Could not transform asst to data")
+                print("Could not transform asset to data.")
             }
         }
-        self.init(discImage: foundPhoto ?? #imageLiteral(), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, userReference: userReference)
+        self.init(discImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, userReference: userReference)
     }
 }
 
@@ -118,6 +123,10 @@ extension  CKRecord {
 
         if disc.userReference != nil {
             self.setValue(disc.userReference, forKey: DiscStrings.userReferenceKey)
+        }
+
+        if disc.discImage != nil {
+            self.setValue(disc.discImage, forKey: DiscStrings.discImageKey)
         }
     }
 }

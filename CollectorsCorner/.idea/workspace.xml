@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4fad9c6-9abb-47b3-896e-24ec523b5f1f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/UserController.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Resources/Assets.xcassets/AppIcon.appiconset/noImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Resources/Assets.xcassets/NoImageAvailable.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CollectorsCorner/Resources/Assets.xcassets/NoImageAvailable.imageset/noImage.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollectorsCorner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/PersonController.swift" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/Collection.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/Collection.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/Disc.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/Disc.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/Person.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/User.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +66,9 @@
       <workItem from="1586800064362" duration="449000" />
       <workItem from="1586800553716" duration="267000" />
       <workItem from="1586800851861" duration="7735000" />
-      <workItem from="1586878203540" duration="10209000" />
+      <workItem from="1586878203540" duration="10254000" />
+      <workItem from="1586962789373" duration="30000" />
+      <workItem from="1586963088928" duration="2534000" />
     </task>
     <servers />
   </component>
