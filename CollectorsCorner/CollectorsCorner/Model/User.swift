@@ -25,14 +25,6 @@ struct UserConstants {
 }
 
 class User {
-    var profileImage: UIImage? {
-        get {
-            guard let photoData = self.photoData else { return nil }
-            return UIImage(data: photoData)
-        } set {
-            photoData = newValue?.jpegData(compressionQuality: 0.5)
-        }
-    }
 
     let username: String
     let name: String
@@ -58,8 +50,17 @@ class User {
         }
     }
 
-    init(profileImage: UIImage, username: String, name: String, email: String, state: String, yearsCollecting: Int, timeStamp: Date = Date(), ckRecordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
-        self.profileImage = profileImage
+    var profileImage: UIImage? {
+        get {
+            guard let photoData = self.photoData else { return nil }
+            return UIImage(data: photoData)
+        } set {
+            photoData = newValue?.jpegData(compressionQuality: 0.5)
+        }
+    }
+
+    init(username: String, name: String, email: String, state: String, yearsCollecting: Int, timeStamp: Date = Date(), ckRecordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), profileImage: UIImage) {
+
         self.name = name
         self.username = username
         self.email = email
@@ -67,6 +68,7 @@ class User {
         self.yearsCollecting = yearsCollecting
         self.timestamp = timeStamp
         self.ckRecordID = ckRecordID
+        self.profileImage = profileImage
     }
 }
 
@@ -80,7 +82,7 @@ extension User {
               let yearsCollecting = ckRecord[UserConstants.yearsCollectingKey] as? Int,
               let timestamp = ckRecord[UserConstants.timestampKey] as? Date
               else { return nil }
-        self.init(profileImage: profileImage, username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting, timeStamp: timestamp)
+        self.init(username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting, timeStamp: timestamp, profileImage: profileImage)
     }
 }
 

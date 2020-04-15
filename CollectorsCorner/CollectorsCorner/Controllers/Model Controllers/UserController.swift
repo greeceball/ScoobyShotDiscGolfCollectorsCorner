@@ -28,7 +28,7 @@ class UserController {
                 // Unwrap reference. If not reference exists return failure
                 guard let reference = reference else { return completion(.failure(.noUserLoggedIn))}
                 // If Success create new user
-                let newUser = User.init(profileImage: profileImage, username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting)
+                let newUser = User.init(username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting, profileImage: profileImage)
                 // Create a CKRecord from the user just created
                 let record = CKRecord(user: newUser)
                 // Call the save method on the database, pass in record
