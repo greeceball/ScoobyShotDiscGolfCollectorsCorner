@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b4fad9c6-9abb-47b3-896e-24ec523b5f1f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/UserController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Controllers/Model Controllers/UserController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CollectorsCorner/Model/User.swift" beforeDir="false" afterPath="$PROJECT_DIR$/CollectorsCorner/Model/User.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +66,7 @@
       <workItem from="1586963088928" duration="3558000" />
       <workItem from="1586966924306" duration="114000" />
       <workItem from="1586967081330" duration="165000" />
-      <workItem from="1586971396378" duration="2405000" />
+      <workItem from="1586971396378" duration="3393000" />
     </task>
     <servers />
   </component>
