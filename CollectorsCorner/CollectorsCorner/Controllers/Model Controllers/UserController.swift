@@ -9,7 +9,7 @@ import UIKit
 class UserController {
     // Mark: - Shared instance
     static let shared = UserController()
-
+    
     // Mark: - Source of Truth and Properties
     var collectors: [User] = []
     var currentUser: User?
@@ -38,18 +38,18 @@ class UserController {
                     }
                     // Unwrap the saved record, unwrap the user initialized from that record
                     guard let record = record,
-                          let savedUser = User(ckRecord: record)
-                            else { return completion(.failure(.couldNotUnwrap))}
-
+                        let savedUser = User(ckRecord: record)
+                        else { return completion(.failure(.couldNotUnwrap))}
+                    
                     print("Created User: \(record.recordID.recordName) successfully")
                     completion(.success(savedUser))
                 }
             case .failure(let error):
-            print(error.errorDescription)
+                print(error.errorDescription)
             }
         }
     }
-
+    
     // Mark: - Read
     func fetchUser(completion: @escaping (Result<User?, UserError>) -> Void) {
         // Fetch and Unwrap the appleUserRef to pass in for the predicate
@@ -70,8 +70,8 @@ class UserController {
                     }
                     // Unwrap the record and foundUser initialized from the record
                     guard let record = records?.first,
-                          let foundUser = User(ckRecord: record)
-                            else { return completion(.failure(.couldNotUnwrap))}
+                        let foundUser = User(ckRecord: record)
+                        else { return completion(.failure(.couldNotUnwrap))}
                     print("Fetched User: \(record.recordID.recordName) successfully")
                     completion(.success(foundUser))
                 }
@@ -80,20 +80,54 @@ class UserController {
             }
         }
     }
-
+    
     // Mark: - Update
-    func update(_ user: User, completion: @escaping (_ success: Bool) -> Void){
-
+    func updateUser(_ user: User, completion: @escaping (Result<User?, UserError>) -> Void){
+        let record = CKRecord(user: user)
+        
+        let operationUpdateUser = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
+        
+        operationUpdateUser.savePolicy = .changedKeys
+        operationUpdateUser.qualityOfService = .userInteractive
+        operationUpdateUser.modifyRecordsCompletionBlock = { (records, _, error) in
+            if let error = error {
+                return completion(.failure(.ckError(error)))
+            }
+            
+            guard let record = records?.first,
+            let user = User(ckRecord: record)
+                else { return completion(.failure(.couldNotUnwrap))}
+            print("Updated \(record.recordID.recordName) successfully in CloudKit")
+            completion(.success(user))
+        }
+        publicDB.add(operationUpdateUser)
     }
     // Mark: - Delete
-    func delete(_ user: User, completion: @escaping (_ success: Bool) -> Void) {
-
+    func delete(_ user: User, completion: @escaping (Result<Bool, UserError>) -> Void) {
+        let operationDeleteUser = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [user.userCKRecordID])
+        
+        operationDeleteUser.savePolicy = .changedKeys
+        operationDeleteUser.qualityOfService = .userInteractive
+        operationDeleteUser.modifyRecordsCompletionBlock = {records, _, error in
+            if let error = error {
+                return completion(.failure(.ckError(error)))
+            }
+            
+            if records?.count == 0 {
+                print("Deleted record from CloudKit")
+                completion(.success(true))
+            } else {
+                print("Unaccounted records were returned when trying to delete")
+                return completion(.failure(.unexpectedRecordsFound))
+            }
+        }
+        publicDB.add(operationDeleteUser)
     }
-
+    
     // Mark: - Helper Func's
     func fetchUserFor(_ collection: Collection, completion: @escaping (Result<User, UserError>) -> Void) {
         guard let userID = collection.userReference?.recordID else { return completion(.failure(.noUserForCollection))}
-
+        
         let predicate = NSPredicate(format: "%K == %@", argumentArray: ["recordID", userID])
         let query = CKQuery(recordType: UserConstants.recordTypeKey, predicate: predicate)
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
@@ -101,13 +135,13 @@ class UserController {
                 completion(.failure(.ckError(error)))
             }
             guard let record = records?.first,
-            let foundUser = User(ckRecord: record)
-                    else { return completion(.failure(.couldNotUnwrap))}
+                let foundUser = User(ckRecord: record)
+                else { return completion(.failure(.couldNotUnwrap))}
             print("Found user for collection.")
             completion(.success(foundUser))
         }
     }
-
+    
     private func fetchAppleUserReference(completion: @escaping (Result<CKRecord.Reference?, UserError>) -> Void) {
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
