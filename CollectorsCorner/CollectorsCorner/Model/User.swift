@@ -26,13 +26,13 @@ struct UserConstants {
 
 class User {
 
-    let username: String
+    var username: String
     let name: String
     var email: String = ""
-    let state: String
+    var state: String
     var yearsCollecting: Int = 0
     let timestamp: Date
-    let ckRecordID: CKRecord.ID
+    let userCKRecordID: CKRecord.ID
 
     var photoData: Data?
 
@@ -67,7 +67,7 @@ class User {
         self.state = state
         self.yearsCollecting = yearsCollecting
         self.timestamp = timeStamp
-        self.ckRecordID = ckRecordID
+        self.userCKRecordID = ckRecordID
         self.profileImage = profileImage
     }
 }
@@ -89,7 +89,7 @@ extension User {
 
 extension  CKRecord {
     convenience init(user: User) {
-        self.init(recordType: UserConstants.recordTypeKey, recordID: user.ckRecordID)
+        self.init(recordType: UserConstants.recordTypeKey, recordID: user.userCKRecordID)
         self.setValuesForKeys([
             UserConstants.profileImageKey : user.profileImage,
             UserConstants.usernameKey : user.username,

@@ -6,8 +6,14 @@
 import CloudKit
 
 class DiscController {
-    // Mark: - Source of Truth and Shared instance
+    // Mark: - Shared instance
+    static let shared = DiscController()
 
+    // Mark: - Source of Truth and
+    var discsArray: [Disc] = []
+    var currentUser: User?
+    var currentCollection: Collection?
+    var currentDisc: Disc?
 
     // Mark: - CRUD Func's
     // Mark: - Create

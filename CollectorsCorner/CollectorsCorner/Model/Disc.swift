@@ -11,7 +11,7 @@ import UIKit.UIImage
 import CloudKit
 
 struct DiscStrings {
-
+    
     static let recordTypeKey = "Disc"
     fileprivate static let discImageKey = "discImage"
     fileprivate static let brandKey = "brand"
@@ -27,18 +27,18 @@ struct DiscStrings {
 
 class Disc {
     
-    let brand: String
-    let mold: String
-    let color: String?
-    let plastic: String
-    let flightPath: String?
-    let run: Int?
-
+    var brand: String
+    var mold: String
+    var color: String = "---"
+    var plastic: String
+    var flightPath: String = ""
+    var run: Int = 0
+    
     var userReference: CKRecord.Reference?
     var user: User?
-    var recordID: CKRecord.ID
+    var discCKRecordID: CKRecord.ID
     var photoData: Data?
-
+    
     var photoAsset: CKAsset? {
         get {
             // Not having this guard check will break being able to create discs without photos
@@ -54,7 +54,7 @@ class Disc {
             return CKAsset(fileURL: fileURL)
         }
     }
-
+    
     var discImage: UIImage? {
         get {
             guard let photoData = self.photoData else { return nil }
@@ -63,9 +63,9 @@ class Disc {
             photoData = newValue?.jpegData(compressionQuality: 0.5)
         }
     }
-
-    init(discImage: UIImage, brand: String, mold: String, color: String?, plastic: String, flightPath: String?, run: Int?, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
-
+    
+    init(discImage: UIImage, brand: String, mold: String, color: String, plastic: String, flightPath: String, run: Int, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+        
         self.brand = brand
         self.mold = mold
         self.color = color
@@ -73,7 +73,7 @@ class Disc {
         self.flightPath = flightPath
         self.run = run
         self.userReference = userReference
-        self.recordID = recordID
+        self.discCKRecordID = recordID
         self.discImage = discImage
     }
 }
@@ -81,16 +81,16 @@ class Disc {
 extension Disc {
     convenience init?(ckRecord: CKRecord) {
         guard let brand = ckRecord[DiscStrings.brandKey] as? String,
-              let mold = ckRecord[DiscStrings.moldKey] as? String,
-              let color = ckRecord[DiscStrings.colorKey] as? String,
-              let plastic = ckRecord[DiscStrings.plasticKey] as? String,
-              let flightPath = ckRecord[DiscStrings.flightPathKey] as? String,
-              let run = ckRecord[DiscStrings.runKey] as? Int
-                else { return nil }
+            let mold = ckRecord[DiscStrings.moldKey] as? String,
+            let color = ckRecord[DiscStrings.colorKey] as? String,
+            let plastic = ckRecord[DiscStrings.plasticKey] as? String,
+            let flightPath = ckRecord[DiscStrings.flightPathKey] as? String,
+            let run = ckRecord[DiscStrings.runKey] as? Int
+            else { return nil }
         let userReference = ckRecord[DiscStrings.userReferenceKey] as? CKRecord.Reference
-
+        
         var foundPhoto: UIImage?
-
+        
         if let photoAsset = ckRecord[DiscStrings.photoAssetKey] as? CKAsset {
             do {
                 let data = try Data(contentsOf: photoAsset.fileURL!)
@@ -105,10 +105,10 @@ extension Disc {
 
 extension  CKRecord {
     convenience init(disc: Disc) {
-        self.init(recordType: DiscStrings.recordTypeKey, recordID: disc.recordID)
-
+        self.init(recordType: DiscStrings.recordTypeKey, recordID: disc.discCKRecordID)
+        
         self.setValuesForKeys([
-
+            
             DiscStrings.brandKey : disc.brand,
             DiscStrings.moldKey : disc.mold,
             DiscStrings.colorKey : disc.color,
@@ -116,20 +116,20 @@ extension  CKRecord {
             DiscStrings.flightPathKey : disc.flightPath,
             DiscStrings.runKey : disc.run
         ])
-
+        
         if disc.photoAsset != nil {
             self.setValue(disc.photoAsset, forKey: DiscStrings.photoAssetKey)
         }
-
+        
         if disc.userReference != nil {
             self.setValue(disc.userReference, forKey: DiscStrings.userReferenceKey)
         }
-
+        
         if disc.discImage != nil {
             self.setValue(disc.discImage, forKey: DiscStrings.discImageKey)
         }
     }
 }
-    
+
 
 
