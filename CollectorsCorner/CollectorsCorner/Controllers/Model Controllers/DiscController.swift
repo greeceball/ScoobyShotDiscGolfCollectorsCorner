@@ -4,24 +4,111 @@
 //
 
 import CloudKit
+import UIKit
 
 class DiscController {
     // Mark: - Shared instance
     static let shared = DiscController()
 
-    // Mark: - Source of Truth and
+    // Mark: - Source of Truth and properties
     var discsArray: [Disc] = []
-    var currentUser: User?
-    var currentCollection: Collection?
-    var currentDisc: Disc?
+//    var currentUser: User?
+//    var currentCollection: Collection?
+//    var currentDisc: Disc?
 
+     let publicDB = CKContainer.default().publicCloudDatabase
+    
     // Mark: - CRUD Func's
     // Mark: - Create
-
+    func createDisc(brand: String, mold: String, color: String, plastic: String, flightPath: String, run: Int = 0, discImage: UIImage, completion: @escaping (Result<Disc?, DiscError>) -> Void) {
+        
+        guard let currentCollection = CollectionController.shared.currentCollection else { return completion(.failure(.noCollectionForDisc))}
+        
+        let reference = CKRecord.Reference(recordID: currentCollection.collectionCKRecordID, action: .deleteSelf)
+        
+        let newDisc = Disc(discImage: discImage, brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, userReference: reference)
+        
+        let discRecord = CKRecord(disc: newDisc)
+        
+        publicDB.save(discRecord) { (record, error) in
+            if let error = error {
+                return completion(.failure(.ckError(error)))
+            }
+            
+            guard let record = record,
+            let savedDisc = Disc(ckRecord: record)
+                else { return completion(.failure(.couldNotUnwrap))}
+            
+            print("Saved Disc: \(record.recordID.recordName) successfully.")
+            completion(.success(savedDisc))
+        }
+    }
+    
     // Mark: - Read
-
+    func loadDisc(completion: @escaping (Result<[Disc]?, DiscError>) -> Void) {
+        let predicate = NSPredicate(value: true)
+        
+        let query = CKQuery(recordType: DiscStrings.recordTypeKey, predicate: predicate)
+        
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let error = error {
+                return completion(.failure(.ckError(error)))
+            }
+            
+            guard let records = records else { return completion(.failure(.couldNotUnwrap))}
+            
+            print("Loaded Discs Successfully")
+            
+            let discs = records.compactMap({ Disc(ckRecord: $0)})
+            
+            completion(.success(discs))
+        }
+    }
+    
     // Mark: - Update
-
+    func updateDisc(_ disc: Disc, completion: @escaping (Result<Disc?, DiscError>) -> Void) {
+        let record = CKRecord(disc: disc)
+        
+        let operationUpdate = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
+        
+        operationUpdate.savePolicy = .changedKeys
+        operationUpdate.qualityOfService = .userInteractive
+        operationUpdate.modifyRecordsCompletionBlock = {(records, _, error) in
+            
+            if let error = error {
+                return completion(.failure(.ckError(error)))
+            }
+            
+            guard let record = records?.first,
+            let disc = Disc(ckRecord: record)
+                else { return completion(.failure(.couldNotUnwrap))}
+            
+            print("Updated \(record.recordID.recordName) successfully in CloudKit")
+            
+            completion(.success(disc))
+        }
+        publicDB.add(operationUpdate)
+    }
+    
     // Mark: - Delete
-
+    func deleteDisc(_ disc: Disc, completion: @escaping (Result<Bool, DiscError>) -> Void) {
+        let operationDeleteDisc = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [disc.discCKRecordID])
+        
+        operationDeleteDisc.savePolicy = .changedKeys
+        operationDeleteDisc.qualityOfService = .userInteractive
+        operationDeleteDisc.modifyRecordsCompletionBlock = { records, _, error in
+            if let error = error {
+                return completion(.failure(.ckError(error)))
+            }
+            if records?.count == 0 {
+                print("Deleted Disc from Collection")
+                completion(.success(true))
+            } else {
+                print("Unaccounted records were returned when trying to delete Disc")
+                return completion(.failure(.unexpectedRecordsFound))
+            }
+        }
+        publicDB.add(operationDeleteDisc)
+    }
+    
 }

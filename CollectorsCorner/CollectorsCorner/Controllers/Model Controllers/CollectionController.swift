@@ -8,9 +8,9 @@ import UIKit
 
 class CollectionController {
     // Mark: - Source of Truth and Shared instance
-    var collectionsArray: [Disc] = []
+    var collectionsArray: [Disc?] = []
     static let shared = CollectionController()
-    
+    var currentCollection: Collection?
     let publicDB = CKContainer.default().publicCloudDatabase
     
     // Mark: - CRUD Func's
@@ -137,6 +137,8 @@ class CollectionController {
         // Perform the delete operation on data base
         publicDB.add(operationDelete)
     }
-    
+    func fetchUserForCollection() {
+        
+    }
     
 }
