@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		347E1D9B244DEBA4001B4099 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347E1D9A244DEBA4001B4099 /* AuthenticationServices.framework */; };
+		347E7C93244D285300367DC6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347E7C92244D285300367DC6 /* SignInController.swift */; };
 		349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1892444D0D50099A2A0 /* AppDelegate.swift */; };
 		349BA18C2444D0D50099A2A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA18B2444D0D50099A2A0 /* SceneDelegate.swift */; };
 		349BA1912444D0D50099A2A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349BA18F2444D0D50099A2A0 /* Main.storyboard */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		347E1D9A244DEBA4001B4099 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		347E7C92244D285300367DC6 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		349BA1862444D0D50099A2A0 /* CollectorsCorner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectorsCorner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		349BA1892444D0D50099A2A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		349BA18B2444D0D50099A2A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				347E1D9B244DEBA4001B4099 /* AuthenticationServices.framework in Frameworks */,
 				349BA1A12444D0FE0099A2A0 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +107,7 @@
 		349BA19F2444D0FE0099A2A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				347E1D9A244DEBA4001B4099 /* AuthenticationServices.framework */,
 				349BA1A02444D0FE0099A2A0 /* CloudKit.framework */,
 			);
 			name = Frameworks;
@@ -119,6 +125,7 @@
 		349BA1A32444D17D0099A2A0 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				347E7C92244D285300367DC6 /* SignInController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -236,6 +243,7 @@
 				349BA1AD2444D2790099A2A0 /* Disc.swift in Sources */,
 				349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */,
 				349BA18C2444D0D50099A2A0 /* SceneDelegate.swift in Sources */,
+				347E7C93244D285300367DC6 /* SignInController.swift in Sources */,
 				349BA1AB2444D2650099A2A0 /* Collection.swift in Sources */,
 				D95F12FD9FCF5C7813CD6680 /* UserController.swift in Sources */,
 				D95F1278B5529FB10DE646FD /* DiscController.swift in Sources */,
