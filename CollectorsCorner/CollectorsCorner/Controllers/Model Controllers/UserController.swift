@@ -14,39 +14,36 @@ class UserController {
     var collectors: [User] = []
     var currentUser: User?
     let publicDB = CKContainer.default().publicCloudDatabase
+    let privateDB = CKContainer.default().privateCloudDatabase
     
     // Mark: - CRUD Func's
     // Mark: - Create
-    func createUser(profileImage: UIImage, username: String, name: String, email: String, state: String, yearsCollecting: Int, completion: @escaping (Result<User?, UserError>) -> Void) {
-        // Fetch the AppleID User Reference and handle User creation in the closure
-        fetchAppleUserReference { (result) in
-            // Switch on result of fetchAppleUserReference
-            switch result {
-            // Case Success take in the reference returned
-            case .success(let reference):
-                // Unwrap reference. If not reference exists return failure
-                guard let reference = reference else { return completion(.failure(.noUserLoggedIn))}
-                // If Success create new user
-                let newUser = User.init(username: username, name: name, email: email, state: state, yearsCollecting: yearsCollecting, appleUserReference: reference, profileImage: profileImage)
-                // Create a CKRecord from the user just created
-                let record = CKRecord(user: newUser)
-                // Call the save method on the database, pass in record
-                self.publicDB.save(record) { (record, error) in
-                    // Handle optional error
-                    if let error = error {
-                        return completion(.failure(.ckError(error)))
-                    }
-                    // Unwrap the saved record, unwrap the user initialized from that record
-                    guard let record = record,
-                        let savedUser = User(ckRecord: record)
-                        else { return completion(.failure(.couldNotUnwrap))}
-                    
-                    print("Created User: \(record.recordID.recordName) successfully")
-                    completion(.success(savedUser))
-                }
-            case .failure(let error):
-                print(error.errorDescription)
+    func createUserWith(profileImage: UIImage?, username: String, firstName: String, lastName: String, email: String, state: String?, yearsCollecting: Int?, completion: @escaping (Result<User?, UserError>) -> Void){
+        
+        let newUser = User(username: username, firstName: firstName, lastName: lastName, email: email, state: state, yearsCollecting: yearsCollecting)
+            
+        saveUser(user: newUser, completion: completion)
+    }
+    
+    func saveUser(user: User, completion: @escaping (Result<User?, UserError>) -> Void) {
+        
+        let userRecord = CKRecord(user: user)
+        // Call the save method on the database, pass in record
+        publicDB.save(userRecord) { (record, error) in
+            // Handle optional error
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) : \(error)")
+                completion(.failure(.ckError(error)))
+                return
             }
+            // Unwrap the saved record, unwrap the user initialized from that record
+            guard let record = record,
+                let user = User(ckRecord: record)
+                else { return completion(.failure(.couldNotUnwrap))}
+            
+            print("Created User: \(record.recordID.recordName) successfully")
+            
+            completion(.success(user))
         }
     }
     
@@ -59,9 +56,10 @@ class UserController {
                 // Unwrap reference, and if it doesnt exist return completion failure due to no user logged in
                 guard let reference = reference else { return completion(.failure(.noUserLoggedIn))}
                 // Init the predicate needed bu the query
-                let predicate = NSPredicate(format: "%K == %@", argumentArray: [UserConstants.appleUserRefKey, reference])
+                let predicate = NSPredicate(value: true)
+                //let predicate = NSPredicate(format: "%K == %@", argumentArray: [UserConstants.appleUserRefKey, reference])
                 // Init the query to pass into the .perform method
-                let query = CKQuery(recordType: UserConstants.recordTypeKey, predicate: predicate)
+                let query = CKQuery(recordType: UserConstants.TypeKey, predicate: predicate)
                 // Implement the .perform method
                 self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
                     // Handle optional error
@@ -95,7 +93,7 @@ class UserController {
             }
             
             guard let record = records?.first,
-            let user = User(ckRecord: record)
+                let user = User(ckRecord: record)
                 else { return completion(.failure(.couldNotUnwrap))}
             print("Updated \(record.recordID.recordName) successfully in CloudKit")
             completion(.success(user))
@@ -129,10 +127,12 @@ class UserController {
         guard let userID = collection.userReference?.recordID else { return completion(.failure(.noUserForCollection))}
         
         let predicate = NSPredicate(format: "%K == %@", argumentArray: ["recordID", userID])
-        let query = CKQuery(recordType: UserConstants.recordTypeKey, predicate: predicate)
+        let query = CKQuery(recordType: UserConstants.TypeKey, predicate: predicate)
+        
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
                 completion(.failure(.ckError(error)))
+                return
             }
             guard let record = records?.first,
                 let foundUser = User(ckRecord: record)

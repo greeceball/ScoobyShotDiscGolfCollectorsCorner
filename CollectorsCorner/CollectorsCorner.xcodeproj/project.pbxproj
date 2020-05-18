@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34174E3B2473261800037961 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34174E3A2473261800037961 /* UserInfoViewController.swift */; };
+		34174E3D24733DA000037961 /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34174E3C24733DA000037961 /* SearchableRecord.swift */; };
 		347E1D9B244DEBA4001B4099 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347E1D9A244DEBA4001B4099 /* AuthenticationServices.framework */; };
 		347E7C93244D285300367DC6 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347E7C92244D285300367DC6 /* SignInController.swift */; };
 		349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1892444D0D50099A2A0 /* AppDelegate.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34174E3A2473261800037961 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		34174E3C24733DA000037961 /* SearchableRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
 		347E1D9A244DEBA4001B4099 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		347E7C92244D285300367DC6 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		349BA1862444D0D50099A2A0 /* CollectorsCorner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectorsCorner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				347E7C92244D285300367DC6 /* SignInController.swift */,
+				34174E3A2473261800037961 /* UserInfoViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				D95F16E411EDE998496366E8 /* UserError.swift */,
 				D95F19EDCFBF958C42627324 /* CollectionError.swift */,
 				D95F112CB0830E92F32D0390 /* DiscError.swift */,
+				34174E3C24733DA000037961 /* SearchableRecord.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -243,8 +249,10 @@
 				349BA1AD2444D2790099A2A0 /* Disc.swift in Sources */,
 				349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */,
 				349BA18C2444D0D50099A2A0 /* SceneDelegate.swift in Sources */,
+				34174E3D24733DA000037961 /* SearchableRecord.swift in Sources */,
 				347E7C93244D285300367DC6 /* SignInController.swift in Sources */,
 				349BA1AB2444D2650099A2A0 /* Collection.swift in Sources */,
+				34174E3B2473261800037961 /* UserInfoViewController.swift in Sources */,
 				D95F12FD9FCF5C7813CD6680 /* UserController.swift in Sources */,
 				D95F1278B5529FB10DE646FD /* DiscController.swift in Sources */,
 				D95F1CC014429218374DCD11 /* CollectionController.swift in Sources */,
