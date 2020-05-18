@@ -9,7 +9,7 @@
 import UIKit
 import AuthenticationServices
 
-class SignInViewController: UIViewController, ASAuthorizationControllerDelegate {
+class SignInViewController: UIViewController {
     
     //MARK: - Properties and Outlets
     @IBOutlet weak var userNameTextField: UITextField!
@@ -26,11 +26,11 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate 
     }
     
     func setUpSignInAppleButton() {
-        let authorizationButton = ASAuthorizationAppleIDButton()
-        authorizationButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
-        authorizationButton.cornerRadius = 10
+        let signInBtn = ASAuthorizationAppleIDButton()
+        signInBtn.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
+        signInBtn.cornerRadius = 10
         //Add button on some view or stack
-        self.loginProviderStackView.addArrangedSubview(authorizationButton)
+        self.loginProviderStackView.addArrangedSubview(signInBtn)
     }
     
     @objc func handleAppleIdRequest() {
@@ -42,14 +42,7 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate 
         authorizationController.performRequests()
     }
     
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-            print("User id is \(userIdentifier) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))") }
-    }
-    
+
     /*
      // MARK: - Navigation
      
@@ -62,4 +55,34 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate 
     
 }
 
+extension SignInViewController : ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let credentials as ASAuthorizationAppleIDCredential :
+            let userIdentifier = credentials.user
+            let fullName = credentials.fullName
+            let email = credentials.email
+            print("User id is \(userIdentifier) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))")
+        case let credentials as ASPasswordCredential :
+            break
+        default:
+            let alert = UIAlertController(title: "Apple SignIn", message: "Something went wrong with your Apple SignIn", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+}
 
+extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
+    }
+}
