@@ -18,14 +18,14 @@ class UserController {
     
     // Mark: - CRUD Func's
     // Mark: - Create
-    func createUserWith(profileImage: UIImage?, username: String, firstName: String, lastName: String, email: String, state: String?, yearsCollecting: Int?, completion: @escaping (Result<User?, UserError>) -> Void){
+    func createUserWith(profileImage: UIImage?, username: String, firstName: String, lastName: String, email: String, state: String?, yearsCollecting: Int?) -> User {
         
         let newUser = User(username: username, firstName: firstName, lastName: lastName, email: email, state: state, yearsCollecting: yearsCollecting)
-            
-        saveUser(user: newUser, completion: completion)
+        
+        return newUser
     }
     
-    func saveUser(user: User, completion: @escaping (Result<User?, UserError>) -> Void) {
+    func saveUser(user: User, completion: @escaping (Bool) -> Void) {
         
         let userRecord = CKRecord(user: user)
         // Call the save method on the database, pass in record
@@ -33,28 +33,28 @@ class UserController {
             // Handle optional error
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) : \(error)")
-                completion(.failure(.ckError(error)))
+                completion(false)
                 return
             }
             // Unwrap the saved record, unwrap the user initialized from that record
             guard let record = record,
                 let user = User(ckRecord: record)
-                else { return completion(.failure(.couldNotUnwrap))}
+                else { return completion(false)}
             
             print("Created User: \(record.recordID.recordName) successfully")
             
-            completion(.success(user))
+            completion(true)
         }
     }
     
     // Mark: - Read
-    func fetchUser(completion: @escaping (Result<User?, UserError>) -> Void) {
+    func fetchUser(completion: @escaping (Bool) -> Void) {
         // Fetch and Unwrap the appleUserRef to pass in for the predicate
         fetchAppleUserReference { (result) in
             switch result {
             case .success(let reference):
                 // Unwrap reference, and if it doesnt exist return completion failure due to no user logged in
-                guard let reference = reference else { return completion(.failure(.noUserLoggedIn))}
+                guard let reference = reference else { return completion(false)}
                 // Init the predicate needed bu the query
                 let predicate = NSPredicate(value: true)
                 //let predicate = NSPredicate(format: "%K == %@", argumentArray: [UserConstants.appleUserRefKey, reference])
@@ -64,14 +64,15 @@ class UserController {
                 self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
                     // Handle optional error
                     if let error = error {
-                        return completion(.failure(.ckError(error)))
+                        return completion(false)
                     }
                     // Unwrap the record and foundUser initialized from the record
                     guard let record = records?.first,
                         let foundUser = User(ckRecord: record)
-                        else { return completion(.failure(.couldNotUnwrap))}
+                        else { return completion(false)}
+                    self.currentUser = foundUser
                     print("Fetched User: \(record.recordID.recordName) successfully")
-                    completion(.success(foundUser))
+                    completion(true)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -80,7 +81,7 @@ class UserController {
     }
     
     // Mark: - Update
-    func updateUser(_ user: User, completion: @escaping (Result<User?, UserError>) -> Void){
+    func updateUser(_ user: User, completion: @escaping (Bool) -> Void){
         let record = CKRecord(user: user)
         
         let operationUpdateUser = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
@@ -89,34 +90,34 @@ class UserController {
         operationUpdateUser.qualityOfService = .userInteractive
         operationUpdateUser.modifyRecordsCompletionBlock = { (records, _, error) in
             if let error = error {
-                return completion(.failure(.ckError(error)))
+                return completion(false)
             }
             
             guard let record = records?.first,
                 let user = User(ckRecord: record)
-                else { return completion(.failure(.couldNotUnwrap))}
+                else { return completion(false)}
             print("Updated \(record.recordID.recordName) successfully in CloudKit")
-            completion(.success(user))
+            completion(true)
         }
         publicDB.add(operationUpdateUser)
     }
     // Mark: - Delete
-    func delete(_ user: User, completion: @escaping (Result<Bool, UserError>) -> Void) {
+    func delete(_ user: User, completion: @escaping (Bool) -> Void) {
         let operationDeleteUser = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [user.userCKRecordID])
         
         operationDeleteUser.savePolicy = .changedKeys
         operationDeleteUser.qualityOfService = .userInteractive
         operationDeleteUser.modifyRecordsCompletionBlock = {records, _, error in
             if let error = error {
-                return completion(.failure(.ckError(error)))
+                return completion(false)
             }
             
             if records?.count == 0 {
                 print("Deleted record from CloudKit")
-                completion(.success(true))
+                completion(true)
             } else {
                 print("Unaccounted records were returned when trying to delete")
-                return completion(.failure(.unexpectedRecordsFound))
+                return completion(false)
             }
         }
         publicDB.add(operationDeleteUser)
@@ -151,6 +152,30 @@ class UserController {
                 let reference = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
                 completion(.success(reference))
             }
+        }
+    }
+}
+
+extension UserController {
+    func doesRecordExist(inRecordType: String, withField: String, equalTo: String, _ completion: @escaping (Bool) -> ()) {
+        print(withField,equalTo)
+        
+        //let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "\(withField) == %@", equalTo)
+        let query = CKQuery(recordType: inRecordType, predicate: predicate)
+        CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
+            records?.forEach({ (record) in
+                
+                self.publicDB.perform(query, inZoneWith: nil, completionHandler: {results, error in
+                    guard let results = results else { return }
+                    if results.count != 0 {
+
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
+                })
+            })
         }
     }
 }

@@ -74,6 +74,20 @@ class User {
         self.userCKRecordID = ckRecordID
         //self.profileImage = profileImage
     }
+    
+    convenience init?(ckRecord: CKRecord) {
+        guard /*let profileImage = ckRecord[UserConstants.profileImageKey] as? UIImage,*/
+             let username = ckRecord[UserConstants.usernameKey] as? String,
+             let firstName = ckRecord[UserConstants.firstNameKey] as? String,
+             let lastName = ckRecord[UserConstants.lastNameKey] as? String,
+             let email = ckRecord[UserConstants.emailKey] as? String,
+             let state = ckRecord[UserConstants.stateKey] as? String,
+             let yearsCollecting = ckRecord[UserConstants.yearsCollectingKey] as? Int
+             //let timestamp = ckRecord[UserConstants.timestampKey] as? Date,
+             //let appleUserRef = ckRecord[UserConstants.appleUserRefKey] as? CKRecord.Reference
+             else { return nil }
+         self.init(username: username, firstName: firstName, lastName: lastName, email: email, state: state, yearsCollecting: yearsCollecting/*, profileImage: profileImage*/)
+    }
 }
 
 extension  CKRecord {
@@ -92,24 +106,6 @@ extension  CKRecord {
         ])
     }
 }
-
-extension User {
-    convenience init?(ckRecord: CKRecord) {
-        guard /*let profileImage = ckRecord[UserConstants.profileImageKey] as? UIImage,*/
-            let username = ckRecord[UserConstants.usernameKey] as? String,
-            let firstName = ckRecord[UserConstants.firstNameKey] as? String,
-            let lastName = ckRecord[UserConstants.lastNameKey] as? String,
-            let email = ckRecord[UserConstants.emailKey] as? String,
-            let state = ckRecord[UserConstants.stateKey] as? String,
-            let yearsCollecting = ckRecord[UserConstants.yearsCollectingKey] as? Int
-            //let timestamp = ckRecord[UserConstants.timestampKey] as? Date,
-            //let appleUserRef = ckRecord[UserConstants.appleUserRefKey] as? CKRecord.Reference
-            else { return nil }
-        self.init(username: username, firstName: firstName, lastName: lastName, email: email, state: state, yearsCollecting: yearsCollecting/*, profileImage: profileImage*/)
-    }
-}
-
-
 
 extension User: Equatable {
     static func == (lhs: User, rhs: User) -> Bool {

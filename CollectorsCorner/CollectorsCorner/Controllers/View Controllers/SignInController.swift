@@ -47,7 +47,7 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate 
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? UserInfoViewController, let user = sender as? User {
+        if let vc = segue.destination as? UserInfoViewController, let _ = sender as? User {
             vc.user = self.user
         }
     }
@@ -62,16 +62,30 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate 
             
             guard let firstName = fullName?.givenName, let lastName = fullName?.familyName, let userEmail = email else { return }
             
-            UserController.shared.createUserWith(profileImage: nil, username: userName, firstName: firstName, lastName: lastName, email: userEmail, state: "nil", yearsCollecting: 0) { (result) in
-                
-                switch result {
-                case .success(let user):
-                    self.user = user
-//                    DispatchQueue.main.async {
-//                        self.performSegue(withIdentifier: "signIn", sender: self)
-//                    }
-                case .failure(let error):
-                    print(error.errorDescription)
+            // var doesUserExist: Bool
+            
+            UserController.shared.doesRecordExist(inRecordType: "User", withField: "userName", equalTo: userName) { (result) in
+                if result == false {
+                    let user = UserController.shared.createUserWith(profileImage: nil, username: userName, firstName: firstName, lastName: lastName, email: userEmail, state: "nil", yearsCollecting: 0)
+                    
+                    UserController.shared.saveUser(user: user) { (result) in
+                        switch result {
+                        case true:
+                            self.user = user
+                        case false:
+                            print("An error occured when trying to save user to cloudKit.")
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        let alertController = UIAlertController(title: "UserName already exists", message: nil, preferredStyle: .alert)
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true)
+                        self.view.setNeedsDisplay()
+                    }
+                    
                 }
             }
             
