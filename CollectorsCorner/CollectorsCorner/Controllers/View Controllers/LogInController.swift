@@ -1,5 +1,5 @@
 //
-//  SIgnInViewController.swift
+//  LogInViewController.swift
 //  CollectorsCorner
 //
 //  Created by Colby Harris on 4/19/20.
@@ -9,11 +9,9 @@
 import UIKit
 import AuthenticationServices
 
-class SignInViewController: UIViewController, ASAuthorizationControllerDelegate {
+class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     
     //MARK: - Properties and Outlets
-    @IBOutlet weak var userNameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginProviderStackView: UIStackView!
     
     var user: User?
@@ -21,9 +19,6 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSignInAppleButton()
-    }
-    
-    @IBAction func logInButtonTapped(_ sender: Any) {
     }
     
     func setUpSignInAppleButton() {
@@ -47,8 +42,8 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate 
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? UserInfoViewController, let _ = sender as? User {
-            vc.user = self.user
+        if let vc = segue.destination as? MainTabBarController, let _ = sender as? User {
+            //vc.user = self.user
         }
     }
     
@@ -61,8 +56,6 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate 
             print("User id is \(userName) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))")
             
             guard let firstName = fullName?.givenName, let lastName = fullName?.familyName, let userEmail = email else { return }
-            
-            // var doesUserExist: Bool
             
             UserController.shared.doesRecordExist(inRecordType: "User", withField: "userName", equalTo: userName) { (result) in
                 if result == false {
@@ -105,7 +98,7 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate 
     }
 }
 
-extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
+extension LogInViewController: ASAuthorizationControllerPresentationContextProviding {
     
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return view.window!
