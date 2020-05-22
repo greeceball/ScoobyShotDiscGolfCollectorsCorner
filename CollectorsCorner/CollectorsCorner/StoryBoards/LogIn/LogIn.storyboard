@@ -10,29 +10,21 @@
         <!--LogIn-->
         <scene sceneID="YtY-bX-EN8">
             <objects>
-                <viewController title="LogIn" id="YLr-Qh-IZ2" customClass="LogInViewController" customModule="CollectorsCorner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginvc" title="LogIn" id="YLr-Qh-IZ2" customClass="LogInViewController" customModule="CollectorsCorner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cuc-uG-leb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6ZQ-30-asc" userLabel="Login Provider Stack View">
-                                <rect key="frame" x="20" y="410.5" width="374" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="AjH-Ea-TF0"/>
-                                </constraints>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tNa-Gj-ynv">
+                                <rect key="frame" x="20" y="714" width="374" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="6ZQ-30-asc" firstAttribute="centerY" secondItem="cuc-uG-leb" secondAttribute="centerY" id="HSF-qh-P5y"/>
-                            <constraint firstItem="6ZQ-30-asc" firstAttribute="centerX" secondItem="Fnd-2l-Qn6" secondAttribute="centerX" id="Xyn-Eg-cAW"/>
-                            <constraint firstItem="Fnd-2l-Qn6" firstAttribute="trailing" secondItem="6ZQ-30-asc" secondAttribute="trailing" constant="20" id="nFo-a8-aES"/>
-                            <constraint firstItem="6ZQ-30-asc" firstAttribute="leading" secondItem="Fnd-2l-Qn6" secondAttribute="leading" constant="20" id="xQh-qs-6IN"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Fnd-2l-Qn6"/>
                     </view>
                     <connections>
-                        <outlet property="loginProviderStackView" destination="6ZQ-30-asc" id="Nhz-F5-TV6"/>
+                        <outlet property="secondaryStackView" destination="tNa-Gj-ynv" id="fBF-nb-1pq"/>
                         <segue destination="OtM-A7-DXM" kind="show" identifier="toMainVC" id="oJK-Sc-fLG"/>
                     </connections>
                 </viewController>

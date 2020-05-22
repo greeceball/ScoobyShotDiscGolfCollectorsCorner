@@ -1,22 +1,22 @@
 //
-//  MainTabBarController.swift
+//  TabBarViewController.swift
 //  CollectorsCorner
 //
-//  Created by Colby Harris on 5/20/20.
+//  Created by Colby Harris on 5/21/20.
 //  Copyright © 2020 Colby_Harris. All rights reserved.
 //
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+class TabBarController: UITabBarController {
+
+    //MARK: - Properties
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for item in self.tabBar.items! {
-            item.image = item.image?.withRenderingMode(.alwaysOriginal)
-            item.selectedImage = item.selectedImage?.withRenderingMode(.alwaysOriginal)
-               }
+        // Do any additional setup after loading the view.
     }
     
 

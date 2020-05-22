@@ -13,6 +13,8 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     
     //MARK: - Properties and Outlets
     @IBOutlet weak var loginProviderStackView: UIStackView!
+    @IBOutlet weak var secondaryStackView: UIStackView!
+    
     
     var user: User?
     
@@ -26,7 +28,9 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
         signInBtn.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
         signInBtn.cornerRadius = 10
         //Add button on some view or stack
-        self.loginProviderStackView.addArrangedSubview(signInBtn)
+        
+        secondaryStackView.addArrangedSubview(signInBtn)
+        //self.loginProviderStackView.addArrangedSubview(signInBtn)
     }
     
     @objc func handleAppleIdRequest() {
@@ -40,10 +44,22 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     
     
     
+    func finishLoggingIn() {
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        guard let mainTabBarController = rootViewController as? TabBarController else { return }
+
+        mainTabBarController.viewControllers = [CollectionsTableViewController()]
+
+        UserDefaults.standard.setIsLoggedIn(value: true)
+
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? MainTabBarController, let _ = sender as? User {
-            //vc.user = self.user
+        if let vc = segue.destination as? TabBarController, let _ = sender as? User {
+            vc.user = self.user
         }
     }
     
@@ -78,6 +94,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
                         self.present(alertController, animated: true)
                         self.view.setNeedsDisplay()
                     }
+                    UserDefaults.standard.set(true, forKey: "status")
                     
                 }
             }
