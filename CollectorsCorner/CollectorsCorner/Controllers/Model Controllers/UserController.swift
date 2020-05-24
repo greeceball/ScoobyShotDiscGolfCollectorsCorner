@@ -158,24 +158,19 @@ class UserController {
 
 extension UserController {
     func doesRecordExist(inRecordType: String, withField: String, equalTo: String, _ completion: @escaping (Bool) -> ()) {
-        print(withField,equalTo)
         
-        //let predicate = NSPredicate(value: true)
         let predicate = NSPredicate(format: "\(withField) == %@", equalTo)
         let query = CKQuery(recordType: inRecordType, predicate: predicate)
-        CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
-            records?.forEach({ (record) in
-                print("1")
-                self.publicDB.perform(query, inZoneWith: nil, completionHandler: {results, error in
-                    guard let results = results else { return }
-                    if results.count != 0 {
-
-                        completion(true)
-                    } else {
-                        completion(false)
-                    }
-                })
-            })
-        }
+        
+        publicDB.perform(query, inZoneWith: nil, completionHandler: {results, error in
+            print("2")
+            guard let results = results else { return }
+            if results.count != 0 {
+                
+                completion(true)
+            } else {
+                completion(false)
+            }
+        })
     }
 }
