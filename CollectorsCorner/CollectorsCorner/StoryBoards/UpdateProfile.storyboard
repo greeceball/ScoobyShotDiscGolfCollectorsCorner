@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Q1s-SZ-4Di">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="f9B-f0-flu">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="jiL-gf-sJv" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hiW-zH-Spt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9m8-yq-sdI">
+                                <rect key="frame" x="186" y="437.5" width="42" height="21"/>
+                                <color key="tintColor" red="0.64747551209999998" green="1" blue="0.32970748090000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9m8-yq-sdI" firstAttribute="centerY" secondItem="hiW-zH-Spt" secondAttribute="centerY" id="FYb-Y8-riz"/>
+                            <constraint firstItem="9m8-yq-sdI" firstAttribute="centerX" secondItem="hiW-zH-Spt" secondAttribute="centerX" id="rcq-Ov-P2U"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8L4-I1-Kme"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sSN-xr-Hu0">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="lyu-v6-vXU">
+                            <connections>
+                                <action selector="logOutButtonTapped:" destination="45X-cp-d4S" id="N2x-Av-bFB"/>
+                                <segue destination="ACp-KA-iV0" kind="show" id="D9M-p3-gCa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Et3-tv-3zf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="45X-cp-d4S" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="876.81159420289862" y="103.79464285714285"/>
+        </scene>
+        <!--LogIn-->
+        <scene sceneID="FcD-rN-1ZD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LogIn" id="ACp-KA-iV0" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="K11-ce-CJX"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lRU-CJ-I2G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1670" y="104"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="edZ-V6-TbL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Q1s-SZ-4Di" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="OSp-Vh-5fC"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="au5-9W-H0z">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jiL-gf-sJv" kind="relationship" relationship="rootViewController" id="hdb-ew-V4I"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hp0-23-8Hn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-33.333333333333336" y="103.79464285714285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
