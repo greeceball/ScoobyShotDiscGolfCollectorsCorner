@@ -13,35 +13,7 @@ class MyCollectionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        if isLoggedIn() == true {
-//            let homeController = CollectionsTableViewController()
-//            //viewControllers = [homeController]
-//        } else {
-//            perform(#selector(showLogInController), with: nil, afterDelay: 0.01)
-//        }
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(handleSignOut))
     }
-
-    @objc func handleSignOut() {
-
-        UserDefaults.standard.set("", forKey: "userID")
-
-        let loginController = LogInViewController()
-        present(loginController, animated: true, completion: nil)
-    }
-
-//    fileprivate func isLoggedIn() -> Bool {
-//        return UserDefaults.standard.isLoggedIn()
-//    }
-
-    @objc func showLogInController(){
-        let logInController = LogInViewController()
-        present(logInController,animated: true, completion: {
-
-        })
-    }
-    
     
     // MARK: - Table view data source
 

@@ -15,19 +15,21 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     
     @IBOutlet weak var secondaryStackView: UIStackView!
     
-    
+    let defaults = UserDefaults.standard
     var user: User?
+    
+    struct Keys {
+        static let userID = "userID"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(appleIDStateRevoked), name: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil)
-        setUpSignInAppleButton()
+        
         //check if userdefaults are not nil
-                if UserDefaults.standard.object(forKey: "user") != nil {
-                    DispatchQueue.main.async {
-                        self.finishLoggingIn()
-                    }
-                }
+        checkUserDefaultsIsNil()
+        
+        setUpSignInAppleButton()
     }
     
     func setUpSignInAppleButton() {
@@ -50,18 +52,13 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     }
     
     @objc func appleIDStateRevoked() {
-        UserDefaults.standard.set(false, forKey: "status")
-        UserDefaults.standard.set("", forKey: "userID")
+        defaults.set("", forKey: Keys.userID)
         self.showLoginViewController()
     }
     
     func finishLoggingIn() {
-        
-        let story = UIStoryboard(name: "Main", bundle: nil)
-        let vc = story.instantiateViewController(withIdentifier: "tabBarVC") as! TabBarController
+
         performSegue(withIdentifier: "toMainVC", sender: nil)
-        //UIApplication.shared.window?.rootViewController = vc
-        //        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
     
     // MARK: - Navigation
@@ -89,8 +86,8 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
                         switch result {
                         case true:
                             self.user = user
-                            UserDefaults.standard.set(true, forKey: "status")
-                            UserDefaults.standard.set(credentials.user, forKey: "userID")
+                            
+                            self.saveUserID(credentials: credentials)
                             DispatchQueue.main.async {
                                 self.finishLoggingIn()
                             }
@@ -124,6 +121,20 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
         let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func saveUserID(credentials: ASAuthorizationAppleIDCredential) {
+         self.defaults.set(credentials.user, forKey: Keys.userID)
+    }
+    
+    func checkUserDefaultsIsNil() {
+        let username = defaults.value(forKey: Keys.userID) as? String ?? ""
+        
+        if username != "" {
+            DispatchQueue.main.async {
+                self.finishLoggingIn()
+            }
+        }
     }
 }
 
