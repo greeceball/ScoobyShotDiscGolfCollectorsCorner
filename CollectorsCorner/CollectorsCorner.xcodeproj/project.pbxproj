@@ -88,6 +88,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3469BA16247C45940044724A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				347E7C92244D285300367DC6 /* LogInController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3469BA17247C45A20044724A /* MyCollection */ = {
+			isa = PBXGroup;
+			children = (
+				346A0A4A2477146100DBC4C4 /* MyCollectionTableViewController.swift */,
+			);
+			path = MyCollection;
+			sourceTree = "<group>";
+		};
+		3469BA18247C45AD0044724A /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				3404C7F22476DA7D0069AFBC /* CollectionsTableViewController.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		3469BA19247C45B80044724A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				346A0A512477367500DBC4C4 /* UpdateProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		3469BA1B247C45F40044724A /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				346A0A4C247716D600DBC4C4 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		346A0A50247735EF00DBC4C4 /* LogIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,11 +199,11 @@
 		349BA1A32444D17D0099A2A0 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				347E7C92244D285300367DC6 /* LogInController.swift */,
-				3404C7F22476DA7D0069AFBC /* CollectionsTableViewController.swift */,
-				346A0A4A2477146100DBC4C4 /* MyCollectionTableViewController.swift */,
-				346A0A4C247716D600DBC4C4 /* TabBarController.swift */,
-				346A0A512477367500DBC4C4 /* UpdateProfileViewController.swift */,
+				3469BA16247C45940044724A /* Login */,
+				3469BA18247C45AD0044724A /* Collections */,
+				3469BA17247C45A20044724A /* MyCollection */,
+				3469BA1B247C45F40044724A /* TabBar */,
+				3469BA19247C45B80044724A /* Profile */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

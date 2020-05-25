@@ -19,7 +19,7 @@ struct CollectionStrings {
     fileprivate static let collectorNumOfYearsCollectingKey = "collectorNumOfYearsCollecting"
     fileprivate static let photoAssetKey = "photoAsset"
     fileprivate static let userReferenceKey = "userReference"
-    
+    fileprivate static let collectionCKRecordIDKey = "collectionCKRecordID"
 }
 
 class Collection {
@@ -27,7 +27,6 @@ class Collection {
     let collectorUserName: String
     let collectorStateOfOrigin: String
     var collectorNumOfYearsCollecting: Int = 0
-    
     var userReference: CKRecord.Reference?
     var user: User?
     var collectionCKRecordID: CKRecord.ID
@@ -35,7 +34,6 @@ class Collection {
     
     var photoAsset: CKAsset? {
         get {
-            guard photoData != nil else { return nil }
             let tempDirectory = NSTemporaryDirectory()
             let tempDirectoryURL = URL(fileURLWithPath: tempDirectory)
             let fileURL = tempDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")

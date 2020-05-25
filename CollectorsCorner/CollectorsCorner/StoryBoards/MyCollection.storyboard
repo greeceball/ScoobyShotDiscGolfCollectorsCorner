@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,11 +16,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DLv-Dd-rI2">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="DLv-Dd-rI2">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DLv-Dd-rI2" id="vqs-h9-C3r">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -29,11 +30,33 @@
                             <outlet property="delegate" destination="bQW-nG-rwk" id="rUY-8D-R0C"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="K8l-2Y-ArM"/>
+                    <navigationItem key="navigationItem" id="K8l-2Y-ArM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aJf-Ch-f80">
+                            <connections>
+                                <segue destination="cFE-lz-K2h" kind="show" id="bja-pG-8oH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKy-ny-a8f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1226.0869565217392" y="-222.32142857142856"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Q5M-OX-u4d">
+            <objects>
+                <viewController id="cFE-lz-K2h" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rJW-jD-ng6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="m1x-bw-oiE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VbV-YR-uI6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pK5-O6-0aW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2046" y="-222"/>
         </scene>
         <!--MyCollection-->
         <scene sceneID="UaC-Vm-TgK">
