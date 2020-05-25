@@ -8,15 +8,15 @@
 
 import Foundation
 
-extension UserDefaults {
-    
-    func setIsLoggedIn(value: Bool) {
-        set(false, forKey: "isLoggedIn")
-        synchronize()
-    }
-    
-    func isLoggedIn() -> Bool {
-        return bool(forKey: "isLoggedIn")
-    }
-    
-}
+//extension UserDefaults {
+//    
+//    func setIsLoggedIn(value: Bool) {
+//        set(false, forKey: "isLoggedIn")
+//        synchronize()
+//    }
+//    
+//    func isLoggedIn() -> Bool {
+//        return bool(forKey: "isLoggedIn")
+//    }
+//    
+//}

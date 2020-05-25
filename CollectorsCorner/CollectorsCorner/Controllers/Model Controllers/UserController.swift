@@ -166,7 +166,6 @@ extension UserController {
             print("2")
             guard let results = results else { return }
             if results.count != 0 {
-                
                 completion(true)
             } else {
                 completion(false)

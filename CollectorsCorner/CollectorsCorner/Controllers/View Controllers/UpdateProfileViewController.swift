@@ -16,7 +16,10 @@ class UpdateProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func logOutButtonTapped(_ sender: Any) {
+        UserDefaults.standard.set("", forKey: "userID")
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -28,3 +31,4 @@ class UpdateProfileViewController: UIViewController {
     */
 
 }
+

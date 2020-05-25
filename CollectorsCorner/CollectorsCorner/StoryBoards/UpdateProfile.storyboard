@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Q1s-SZ-4Di">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Q1s-SZ-4Di">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="f9B-f0-flu">
             <objects>
-                <viewController id="jiL-gf-sJv" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="jiL-gf-sJv" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hiW-zH-Spt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,16 +30,34 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8L4-I1-Kme"/>
                     </view>
-                    <navigationItem key="navigationItem" id="sSN-xr-Hu0"/>
+                    <navigationItem key="navigationItem" id="sSN-xr-Hu0">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="lyu-v6-vXU">
+                            <connections>
+                                <action selector="logOutButtonTapped:" destination="45X-cp-d4S" id="N2x-Av-bFB"/>
+                                <segue destination="ACp-KA-iV0" kind="show" id="D9M-p3-gCa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Et3-tv-3zf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="45X-cp-d4S" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="876.81159420289862" y="103.79464285714285"/>
+        </scene>
+        <!--LogIn-->
+        <scene sceneID="FcD-rN-1ZD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LogIn" id="ACp-KA-iV0" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="K11-ce-CJX"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lRU-CJ-I2G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1670" y="104"/>
         </scene>
         <!--Profile-->
         <scene sceneID="edZ-V6-TbL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Q1s-SZ-4Di" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Q1s-SZ-4Di" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="OSp-Vh-5fC"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

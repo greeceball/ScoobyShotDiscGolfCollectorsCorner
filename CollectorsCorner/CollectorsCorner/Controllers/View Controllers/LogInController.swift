@@ -12,7 +12,7 @@ import AuthenticationServices
 class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     
     //MARK: - Properties and Outlets
-    @IBOutlet weak var loginProviderStackView: UIStackView!
+    
     @IBOutlet weak var secondaryStackView: UIStackView!
     
     
@@ -20,7 +20,14 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(appleIDStateRevoked), name: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil)
         setUpSignInAppleButton()
+        //check if userdefaults are not nil
+                if UserDefaults.standard.object(forKey: "user") != nil {
+                    DispatchQueue.main.async {
+                        self.finishLoggingIn()
+                    }
+                }
     }
     
     func setUpSignInAppleButton() {
@@ -29,7 +36,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
         signInBtn.cornerRadius = 10
         //Add button on some view or stack
         
-        secondaryStackView.addArrangedSubview(signInBtn)
+        secondaryStackView?.addArrangedSubview(signInBtn)
         //self.loginProviderStackView.addArrangedSubview(signInBtn)
     }
     
@@ -42,19 +49,20 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
         authorizationController.performRequests()
     }
     
-    
-    
-    func finishLoggingIn() {
-        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-        guard let mainTabBarController = rootViewController as? TabBarController else { return }
-
-        mainTabBarController.viewControllers = [CollectionsTableViewController()]
-
-        UserDefaults.standard.setIsLoggedIn(value: true)
-
-        dismiss(animated: true, completion: nil)
+    @objc func appleIDStateRevoked() {
+        UserDefaults.standard.set(false, forKey: "status")
+        UserDefaults.standard.set("", forKey: "userID")
+        self.showLoginViewController()
     }
     
+    func finishLoggingIn() {
+        
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let vc = story.instantiateViewController(withIdentifier: "tabBarVC") as! TabBarController
+        performSegue(withIdentifier: "toMainVC", sender: nil)
+        //UIApplication.shared.window?.rootViewController = vc
+        //        UIApplication.shared.windows.first?.makeKeyAndVisible()
+    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,21 +89,25 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
                         switch result {
                         case true:
                             self.user = user
+                            UserDefaults.standard.set(true, forKey: "status")
+                            UserDefaults.standard.set(credentials.user, forKey: "userID")
+                            DispatchQueue.main.async {
+                                self.finishLoggingIn()
+                            }
                         case false:
                             print("An error occured when trying to save user to cloudKit.")
                         }
                     }
-                } else {
+                } else if result == true {
                     DispatchQueue.main.async {
-                        let alertController = UIAlertController(title: "UserName already exists", message: nil, preferredStyle: .alert)
-                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                        
-                        alertController.addAction(cancelAction)
-                        self.present(alertController, animated: true)
-                        self.view.setNeedsDisplay()
+//                        let alertController = UIAlertController(title: "UserName already exists", message: nil, preferredStyle: .alert)
+//                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+//
+//                        alertController.addAction(cancelAction)
+//                        self.present(alertController, animated: true)
+//                        self.view.setNeedsDisplay()
+                        self.finishLoggingIn()
                     }
-                    UserDefaults.standard.set(true, forKey: "status")
-                    
                 }
             }
             
@@ -119,5 +131,15 @@ extension LogInViewController: ASAuthorizationControllerPresentationContextProvi
     
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return view.window!
+    }
+}
+
+extension UIViewController {
+    
+    func showLoginViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as? LogInViewController {
+            self.present(loginViewController, animated: true, completion: nil)
+        }
     }
 }
