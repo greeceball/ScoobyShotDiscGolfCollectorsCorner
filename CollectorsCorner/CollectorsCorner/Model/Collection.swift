@@ -7,7 +7,7 @@
 //
 
 
-import UIKit
+import UIKit.UIImage
 import CloudKit
 
 struct CollectionStrings {
@@ -113,3 +113,4 @@ extension CKRecord {
         }
     }
 }
+

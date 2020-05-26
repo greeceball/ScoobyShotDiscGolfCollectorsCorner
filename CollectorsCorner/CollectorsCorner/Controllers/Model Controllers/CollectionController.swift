@@ -76,6 +76,27 @@ class CollectionController {
         }
     }
     
+    func fetchCollection(collectionUserId: CKRecord.ID, completion: @escaping (Result<[Disc]?, DiscError>) -> Void) {
+        
+        let predicate = NSPredicate(value: true)
+        
+        let query = CKQuery(recordType: CollectionStrings.recordTypeKey, predicate: predicate)
+        
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let error = error {
+                return completion(.failure(.ckError(error)))
+            }
+            
+            guard let records = records else { return completion(.failure(.couldNotUnwrap))}
+            
+            print("Loaded Collection Successfully")
+            
+            let collection = records.compactMap({ Disc(ckRecord: $0)})
+            
+            completion(.success(collection))
+        }
+    }
+    
     // Mark: - Update
     func updateCollection(_ collection: Collection, completion: @escaping (Result<Collection?, CollectionError>) -> Void) {
         

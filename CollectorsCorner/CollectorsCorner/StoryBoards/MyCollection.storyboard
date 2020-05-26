@@ -23,14 +23,27 @@
                     <navigationItem key="navigationItem" id="K8l-2Y-ArM">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="aJf-Ch-f80">
                             <connections>
-                                <segue destination="cFE-lz-K2h" kind="show" id="bja-pG-8oH"/>
+                                <segue destination="cFE-lz-K2h" kind="show" identifier="toCreateDiscVC" id="bja-pG-8oH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="dBP-y4-oHS" kind="show" identifier="toDiscDetailVC" id="xdU-zi-qYx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKy-ny-a8f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1226.0869565217392" y="-222.32142857142856"/>
+        </scene>
+        <!--DiscDetails-->
+        <scene sceneID="GoQ-da-CV4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DiscDetails" id="dBP-y4-oHS" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="mYB-RL-vXy"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QEy-km-rgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1236" y="175"/>
         </scene>
         <!--Create Disc View Controller-->
         <scene sceneID="Q5M-OX-u4d">
@@ -135,12 +148,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZc-00-ZR6">
-                                        <rect key="frame" x="0.0" y="14" width="374" height="216"/>
+                                        <rect key="frame" x="0.0" y="14.5" width="374" height="216"/>
                                     </pickerView>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Disc to Collection:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaF-LJ-BrL">
-                                <rect key="frame" x="101" y="129" width="213" height="21"/>
+                                <rect key="frame" x="100.5" y="129.5" width="213" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

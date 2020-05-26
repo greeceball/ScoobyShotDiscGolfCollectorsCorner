@@ -93,6 +93,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="teb-8T-CPu"/>
+                    <connections>
+                        <segue destination="fn0-HF-CeN" kind="show" id="xX0-si-1dO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1KB-Q3-64v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,6 +120,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uSs-tO-n52" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-586.95652173913049" y="-222.32142857142856"/>
+        </scene>
+        <!--DiscDetails-->
+        <scene sceneID="Emm-xA-uah">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DiscDetails" id="fn0-HF-CeN" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="JyE-0L-ANW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EK3-GP-5VZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1771" y="-222"/>
         </scene>
     </scenes>
     <resources>

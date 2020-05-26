@@ -45,23 +45,18 @@ class DiscController {
     }
     
     // Mark: - Read
-    func loadDisc(completion: @escaping (Result<[Disc]?, DiscError>) -> Void) {
-        let predicate = NSPredicate(value: true)
+    func loadDisc(discId: CKRecord.ID, completion: @escaping (Result<Disc?, DiscError>) -> Void) {
         
-        let query = CKQuery(recordType: DiscStrings.recordTypeKey, predicate: predicate)
-        
-        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+        publicDB.fetch(withRecordID: discId) { (record, error) in
             if let error = error {
                 return completion(.failure(.ckError(error)))
             }
+            guard let myRecord = record else { return completion(.failure(.couldNotUnwrap))}
             
-            guard let records = records else { return completion(.failure(.couldNotUnwrap))}
+            guard let disc = Disc(ckRecord: myRecord) else { return completion(.failure(.couldNotUnwrap))}
             
-            print("Loaded Discs Successfully")
+            completion(.success(disc))
             
-            let discs = records.compactMap({ Disc(ckRecord: $0)})
-            
-            completion(.success(discs))
         }
     }
     
@@ -89,7 +84,7 @@ class DiscController {
         }
         publicDB.add(operationUpdate)
     }
-    
+        
     // Mark: - Delete
     func deleteDisc(_ disc: Disc, completion: @escaping (Result<Bool, DiscError>) -> Void) {
         let operationDeleteDisc = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [disc.discCKRecordID])

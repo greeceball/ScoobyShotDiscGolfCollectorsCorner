@@ -15,6 +15,8 @@
 		341EAC3A247D6FDA00761ECC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC39247D6FDA00761ECC /* ProfileViewController.swift */; };
 		341EAC3C247D715800761ECC /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC3B247D715800761ECC /* States.swift */; };
 		341EAC3E247D719C00761ECC /* Years.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC3D247D719C00761ECC /* Years.swift */; };
+		344378F4247D770E0096F69D /* DiscDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344378F3247D770E0096F69D /* DiscDetails.storyboard */; };
+		344378F7247D7AD20096F69D /* DiscDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344378F6247D7AD20096F69D /* DiscDetailsViewController.swift */; };
 		34562C70247582C300EE52D3 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34562C6F247582C300EE52D3 /* Report.swift */; };
 		34562C722475935100EE52D3 /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34562C712475935100EE52D3 /* ReportController.swift */; };
 		3466715E247C6BCD00F4D612 /* CreateDiscViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3466715D247C6BCD00F4D612 /* CreateDiscViewController.swift */; };
@@ -57,6 +59,8 @@
 		341EAC39247D6FDA00761ECC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		341EAC3B247D715800761ECC /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		341EAC3D247D719C00761ECC /* Years.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Years.swift; sourceTree = "<group>"; };
+		344378F3247D770E0096F69D /* DiscDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscDetails.storyboard; sourceTree = "<group>"; };
+		344378F6247D7AD20096F69D /* DiscDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscDetailsViewController.swift; sourceTree = "<group>"; };
 		34562C6F247582C300EE52D3 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		34562C712475935100EE52D3 /* ReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
 		3466715D247C6BCD00F4D612 /* CreateDiscViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiscViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +68,7 @@
 		34667164247C7CA900F4D612 /* CollectionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsCell.swift; sourceTree = "<group>"; };
 		34667166247C7E4B00F4D612 /* DiscCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiscCustomCell.xib; sourceTree = "<group>"; };
 		34667168247D686200F4D612 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = PhotoPicker.storyboard; path = CollectorsCorner/StoryBoards/PhotoPicker.storyboard; sourceTree = SOURCE_ROOT; };
-		3466716A247D687B00F4D612 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoPickerViewController.swift; path = "CollectorsCorner/Controllers/View Controllers/PhotoPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3466716A247D687B00F4D612 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoPickerViewController.swift; path = "CollectorsCorner/Controllers/View Controllers/Custom Cell + PhotoPicker/PhotoPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3466716C247D6ED200F4D612 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		346A0A4A2477146100DBC4C4 /* MyCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionTableViewController.swift; sourceTree = "<group>"; };
 		346A0A4C247716D600DBC4C4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -106,14 +110,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		34667161247C6F9500F4D612 /* Custom Cell */ = {
+		344378F2247D75220096F69D /* PickerData */ = {
 			isa = PBXGroup;
 			children = (
+				341EAC3B247D715800761ECC /* States.swift */,
+				341EAC3D247D719C00761ECC /* Years.swift */,
+			);
+			path = PickerData;
+			sourceTree = "<group>";
+		};
+		344378F5247D7AB50096F69D /* DiscDetails */ = {
+			isa = PBXGroup;
+			children = (
+				344378F6247D7AD20096F69D /* DiscDetailsViewController.swift */,
+			);
+			path = DiscDetails;
+			sourceTree = "<group>";
+		};
+		34667161247C6F9500F4D612 /* Custom Cell + PhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				3466716A247D687B00F4D612 /* PhotoPickerViewController.swift */,
 				3466715F247C6F8B00F4D612 /* DiscCell.swift */,
 				34667164247C7CA900F4D612 /* CollectionsCell.swift */,
 				34667166247C7E4B00F4D612 /* DiscCustomCell.xib */,
 			);
-			path = "Custom Cell";
+			path = "Custom Cell + PhotoPicker";
 			sourceTree = "<group>";
 		};
 		3469BA16247C45940044724A /* Login */ = {
@@ -229,13 +251,13 @@
 		349BA1A32444D17D0099A2A0 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3466716A247D687B00F4D612 /* PhotoPickerViewController.swift */,
+				344378F5247D7AB50096F69D /* DiscDetails */,
 				3469BA16247C45940044724A /* Login */,
 				3469BA18247C45AD0044724A /* Collections */,
 				3469BA17247C45A20044724A /* MyCollection */,
 				3469BA1B247C45F40044724A /* TabBar */,
 				3469BA19247C45B80044724A /* Profile */,
-				34667161247C6F9500F4D612 /* Custom Cell */,
+				34667161247C6F9500F4D612 /* Custom Cell + PhotoPicker */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -254,12 +276,11 @@
 		349BA1A52444D18E0099A2A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				344378F2247D75220096F69D /* PickerData */,
 				349BA1A82444D22E0099A2A0 /* User.swift */,
 				349BA1AA2444D2650099A2A0 /* Collection.swift */,
 				349BA1AC2444D2790099A2A0 /* Disc.swift */,
 				34562C6F247582C300EE52D3 /* Report.swift */,
-				341EAC3B247D715800761ECC /* States.swift */,
-				341EAC3D247D719C00761ECC /* Years.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -270,6 +291,7 @@
 				346A0A50247735EF00DBC4C4 /* LogIn */,
 				349BA18F2444D0D50099A2A0 /* Main.storyboard */,
 				3404C7EE2475E07A0069AFBC /* Collections.storyboard */,
+				344378F3247D770E0096F69D /* DiscDetails.storyboard */,
 				3404C7EC2475E0620069AFBC /* MyCollection.storyboard */,
 				34E9BC8E2475BC0200C4DD71 /* UpdateProfile.storyboard */,
 				34667168247D686200F4D612 /* PhotoPicker.storyboard */,
@@ -354,6 +376,7 @@
 				349BA1962444D0D50099A2A0 /* LaunchScreen.storyboard in Resources */,
 				3404C7EF2475E07A0069AFBC /* Collections.storyboard in Resources */,
 				349BA1932444D0D50099A2A0 /* Assets.xcassets in Resources */,
+				344378F4247D770E0096F69D /* DiscDetails.storyboard in Resources */,
 				349BA1912444D0D50099A2A0 /* Main.storyboard in Resources */,
 				34E9BC8F2475BC0200C4DD71 /* UpdateProfile.storyboard in Resources */,
 				34667169247D686200F4D612 /* PhotoPicker.storyboard in Resources */,
@@ -373,6 +396,7 @@
 				3404C7F32476DA7D0069AFBC /* CollectionsTableViewController.swift in Sources */,
 				349BA1AD2444D2790099A2A0 /* Disc.swift in Sources */,
 				349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */,
+				344378F7247D7AD20096F69D /* DiscDetailsViewController.swift in Sources */,
 				341EAC3C247D715800761ECC /* States.swift in Sources */,
 				349BA18C2444D0D50099A2A0 /* SceneDelegate.swift in Sources */,
 				3466715E247C6BCD00F4D612 /* CreateDiscViewController.swift in Sources */,
