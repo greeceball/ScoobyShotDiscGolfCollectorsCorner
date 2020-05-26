@@ -1,14 +1,14 @@
 //
-//  UpdateProfileViewController.swift
+//  CreateDiscViewController.swift
 //  CollectorsCorner
 //
-//  Created by Colby Harris on 5/21/20.
+//  Created by Colby Harris on 5/25/20.
 //  Copyright © 2020 Colby_Harris. All rights reserved.
 //
 
 import UIKit
 
-class UpdateProfileViewController: UIViewController {
+class CreateDiscViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,10 +16,7 @@ class UpdateProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func logOutButtonTapped(_ sender: Any) {
-        UserDefaults.standard.set("", forKey: "userID")
-    }
-    
+
     /*
     // MARK: - Navigation
 
@@ -31,4 +28,3 @@ class UpdateProfileViewController: UIViewController {
     */
 
 }
-

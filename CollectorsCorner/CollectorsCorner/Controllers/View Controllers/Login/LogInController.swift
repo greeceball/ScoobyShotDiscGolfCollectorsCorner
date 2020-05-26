@@ -26,9 +26,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(appleIDStateRevoked), name: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil)
         
-        //check if userdefaults are not nil
         checkUserDefaultsIsNil()
-        
         setUpSignInAppleButton()
     }
     
@@ -57,7 +55,6 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     }
     
     func finishLoggingIn() {
-
         performSegue(withIdentifier: "toMainVC", sender: nil)
     }
     
@@ -80,7 +77,8 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
             
             UserController.shared.doesRecordExist(inRecordType: "User", withField: "userName", equalTo: userName) { (result) in
                 if result == false {
-                    let user = UserController.shared.createUserWith(profileImage: nil, username: userName, firstName: firstName, lastName: lastName, email: userEmail, state: "nil", yearsCollecting: 0)
+                    
+                    let user = UserController.shared.createUserWith(profileImage: nil, username: userName, firstName: firstName, lastName: lastName, email: userEmail, state: "", yearsCollecting: 0, myCollection: "")
                     
                     UserController.shared.saveUser(user: user) { (result) in
                         switch result {
@@ -97,12 +95,6 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
                     }
                 } else if result == true {
                     DispatchQueue.main.async {
-//                        let alertController = UIAlertController(title: "UserName already exists", message: nil, preferredStyle: .alert)
-//                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-//
-//                        alertController.addAction(cancelAction)
-//                        self.present(alertController, animated: true)
-//                        self.view.setNeedsDisplay()
                         self.finishLoggingIn()
                     }
                 }

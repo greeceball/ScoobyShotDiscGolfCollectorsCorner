@@ -18,9 +18,9 @@ class UserController {
     
     // Mark: - CRUD Func's
     // Mark: - Create
-    func createUserWith(profileImage: UIImage?, username: String, firstName: String, lastName: String, email: String, state: String?, yearsCollecting: Int?) -> User {
+    func createUserWith(profileImage: UIImage?, username: String, firstName: String, lastName: String, email: String, state: String?, yearsCollecting: Int?, myCollection: String) -> User {
         
-        let newUser = User(username: username, firstName: firstName, lastName: lastName, email: email, state: state, yearsCollecting: yearsCollecting)
+        let newUser = User(username: username, firstName: firstName, lastName: lastName, email: email, state: state, yearsCollecting: yearsCollecting, myCollection: myCollection, profileImage: nil)
         
         return newUser
     }
