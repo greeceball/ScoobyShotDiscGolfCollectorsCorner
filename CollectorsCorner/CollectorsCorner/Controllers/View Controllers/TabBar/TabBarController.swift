@@ -11,6 +11,7 @@ import UIKit
 class TabBarController: UITabBarController {
 
     //MARK: - Properties
+    static let shared = TabBarController()
     var user: User?
     
     override func viewDidLoad() {

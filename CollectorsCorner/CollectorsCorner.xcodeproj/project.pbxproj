@@ -17,6 +17,7 @@
 		341EAC3E247D719C00761ECC /* Years.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC3D247D719C00761ECC /* Years.swift */; };
 		344378F4247D770E0096F69D /* DiscDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344378F3247D770E0096F69D /* DiscDetails.storyboard */; };
 		344378F7247D7AD20096F69D /* DiscDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344378F6247D7AD20096F69D /* DiscDetailsViewController.swift */; };
+		344378F9247D9AC00096F69D /* FlightPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344378F8247D9AC00096F69D /* FlightPath.swift */; };
 		34562C70247582C300EE52D3 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34562C6F247582C300EE52D3 /* Report.swift */; };
 		34562C722475935100EE52D3 /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34562C712475935100EE52D3 /* ReportController.swift */; };
 		3466715E247C6BCD00F4D612 /* CreateDiscViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3466715D247C6BCD00F4D612 /* CreateDiscViewController.swift */; };
@@ -61,6 +62,7 @@
 		341EAC3D247D719C00761ECC /* Years.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Years.swift; sourceTree = "<group>"; };
 		344378F3247D770E0096F69D /* DiscDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscDetails.storyboard; sourceTree = "<group>"; };
 		344378F6247D7AD20096F69D /* DiscDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscDetailsViewController.swift; sourceTree = "<group>"; };
+		344378F8247D9AC00096F69D /* FlightPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightPath.swift; sourceTree = "<group>"; };
 		34562C6F247582C300EE52D3 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		34562C712475935100EE52D3 /* ReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
 		3466715D247C6BCD00F4D612 /* CreateDiscViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiscViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				341EAC3B247D715800761ECC /* States.swift */,
 				341EAC3D247D719C00761ECC /* Years.swift */,
+				344378F8247D9AC00096F69D /* FlightPath.swift */,
 			);
 			path = PickerData;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				341EAC3C247D715800761ECC /* States.swift in Sources */,
 				349BA18C2444D0D50099A2A0 /* SceneDelegate.swift in Sources */,
 				3466715E247C6BCD00F4D612 /* CreateDiscViewController.swift in Sources */,
+				344378F9247D9AC00096F69D /* FlightPath.swift in Sources */,
 				34174E3D24733DA000037961 /* SearchableRecord.swift in Sources */,
 				346A0A4D247716D600DBC4C4 /* TabBarController.swift in Sources */,
 				341EAC3A247D6FDA00761ECC /* ProfileViewController.swift in Sources */,

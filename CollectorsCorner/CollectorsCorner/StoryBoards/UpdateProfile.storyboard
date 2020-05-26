@@ -91,7 +91,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Log Out" id="lyu-v6-vXU">
                             <connections>
                                 <action selector="logOutButtonTapped:" destination="jiL-gf-sJv" id="A3T-QM-Rmm"/>
-                                <segue destination="ACp-KA-iV0" kind="show" id="D9M-p3-gCa"/>
+                                <segue destination="ACp-KA-iV0" kind="show" identifier="toLoginVC" id="D9M-p3-gCa"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="6Sc-QB-de4">

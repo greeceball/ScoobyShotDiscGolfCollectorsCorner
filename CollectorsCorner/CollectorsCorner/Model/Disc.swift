@@ -21,7 +21,7 @@ struct DiscStrings {
     fileprivate static let flightPathKey = "flightPath"
     fileprivate static let runKey = "run"
     fileprivate static let photoAssetKey = "photoAsset"
-    fileprivate static let userReferenceKey = "userReference"
+    fileprivate static let collectionReferenceKey = "collectionReference"
     
 }
 
@@ -29,12 +29,12 @@ class Disc {
     
     var brand: String
     var mold: String
-    var color: String = "---"
+    var color: String
     var plastic: String
-    var flightPath: String = ""
-    var run: Int = 0
+    var flightPath: String
+    var run: Int
     
-    var userReference: CKRecord.Reference?
+    var collectionReference: CKRecord.Reference?
     var user: User?
     var discCKRecordID: CKRecord.ID
     var photoData: Data?
@@ -64,15 +64,15 @@ class Disc {
         }
     }
     
-    init(discImage: UIImage, brand: String, mold: String, color: String, plastic: String, flightPath: String, run: Int, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(discImage: UIImage, brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
         
         self.brand = brand
         self.mold = mold
-        self.color = color
-        self.plastic = plastic
-        self.flightPath = flightPath
-        self.run = run
-        self.userReference = userReference
+        self.color = color ?? "---"
+        self.plastic = plastic ?? "---"
+        self.flightPath = flightPath ?? "---"
+        self.run = run ?? 0
+        self.collectionReference = userReference
         self.discCKRecordID = recordID
         self.discImage = discImage
     }
@@ -87,7 +87,7 @@ extension Disc {
             let flightPath = ckRecord[DiscStrings.flightPathKey] as? String,
             let run = ckRecord[DiscStrings.runKey] as? Int
             else { return nil }
-        let userReference = ckRecord[DiscStrings.userReferenceKey] as? CKRecord.Reference
+        let collectionReference = ckRecord[DiscStrings.collectionReferenceKey] as? CKRecord.Reference
         
         var foundPhoto: UIImage?
         
@@ -99,7 +99,7 @@ extension Disc {
                 print("Could not transform asset to data.")
             }
         }
-        self.init(discImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, userReference: userReference)
+        self.init(discImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, userReference: collectionReference)
     }
 }
 
@@ -121,8 +121,8 @@ extension  CKRecord {
             self.setValue(disc.photoAsset, forKey: DiscStrings.photoAssetKey)
         }
         
-        if disc.userReference != nil {
-            self.setValue(disc.userReference, forKey: DiscStrings.userReferenceKey)
+        if disc.collectionReference != nil {
+            self.setValue(disc.collectionReference, forKey: DiscStrings.collectionReferenceKey)
         }
         
         if disc.discImage != nil {

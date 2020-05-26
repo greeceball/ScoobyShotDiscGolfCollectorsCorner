@@ -84,17 +84,20 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
                         switch result {
                         case true:
                             self.user = user
-                            
-                            self.saveUserID(credentials: credentials)
-                            DispatchQueue.main.async {
-                                self.finishLoggingIn()
+                            let userCollection = CollectionController.shared.createCollection(with: userName, collectorStateOfOrigin: "", collectorNumOfYearsCollection: 0, collectionImage: nil) { (result) in
+                                self.saveUserID(credentials: credentials)
+                                DispatchQueue.main.async {
+                                    self.finishLoggingIn()
+                                }
                             }
+                            
                         case false:
                             print("An error occured when trying to save user to cloudKit.")
                         }
                     }
                 } else if result == true {
                     DispatchQueue.main.async {
+                        self.saveUserID(credentials: credentials)
                         self.finishLoggingIn()
                     }
                 }
@@ -116,7 +119,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     }
     
     func saveUserID(credentials: ASAuthorizationAppleIDCredential) {
-         self.defaults.set(credentials.user, forKey: Keys.userID)
+        self.defaults.set(credentials.user, forKey: Keys.userID)
     }
     
     func checkUserDefaultsIsNil() {

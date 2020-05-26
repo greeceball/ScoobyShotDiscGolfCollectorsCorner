@@ -10,6 +10,10 @@ import UIKit
 
 class MyCollectionTableViewController: UITableViewController {
 
+    //MARK: - Properties and outlets
+    @IBOutlet var myCollectionTableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMyCollection()

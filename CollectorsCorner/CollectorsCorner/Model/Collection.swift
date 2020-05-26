@@ -25,7 +25,7 @@ struct CollectionStrings {
 class Collection {
     
     let collectorUserName: String
-    let collectorStateOfOrigin: String
+    let collectorStateOfOrigin: String?
     var collectorNumOfYearsCollecting: Int = 0
     var userReference: CKRecord.Reference?
     var user: User?

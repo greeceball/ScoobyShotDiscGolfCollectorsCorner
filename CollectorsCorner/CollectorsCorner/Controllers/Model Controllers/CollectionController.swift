@@ -14,7 +14,7 @@ class CollectionController {
     let publicDB = CKContainer.default().publicCloudDatabase
     
     // Mark: - CRUD Func's
-    func saveCollection(with collectorUserName: String, collectorStateOfOrigin: String, collectorNumOfYearsCollection: Int, collectionImage: UIImage, completion: @escaping (Result<Collection?, CollectionError>) -> Void) {
+    func createCollection(with collectorUserName: String, collectorStateOfOrigin: String, collectorNumOfYearsCollection: Int, collectionImage: UIImage?, completion: @escaping (Result<Collection?, CollectionError>) -> Void) {
         
         // Unwrapping current user or return no user logged in
         guard let currentUser = UserController.shared.currentUser else { return completion(.failure(.noUserLoggedIn))}
@@ -23,7 +23,7 @@ class CollectionController {
         let reference = CKRecord.Reference(recordID: currentUser.userCKRecordID, action: .deleteSelf)
         
         // Create new collection by initializing it and setting values
-        let newCollection = Collection(collectionImage: collectionImage, collectorsUserName: collectorUserName, collectorStateOfOrigin: collectorStateOfOrigin, collectorNumOfYearsCollecting: collectorNumOfYearsCollection, userReference: reference)
+        let newCollection = Collection(collectionImage: collectionImage ?? #imageLiteral(resourceName: "NoImageAvailable"), collectorsUserName: collectorUserName, collectorStateOfOrigin: collectorStateOfOrigin, collectorNumOfYearsCollecting: collectorNumOfYearsCollection, userReference: reference)
         
         // Create var collectionRecord and set equal to new collections CKRecord
         let collectionRecord = CKRecord(collection: newCollection)

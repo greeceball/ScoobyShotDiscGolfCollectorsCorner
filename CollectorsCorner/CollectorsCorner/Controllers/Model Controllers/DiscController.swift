@@ -20,7 +20,7 @@ class DiscController {
     
     // Mark: - CRUD Func's
     // Mark: - Create
-    func createDisc(brand: String, mold: String, color: String, plastic: String, flightPath: String, run: Int = 0, discImage: UIImage, completion: @escaping (Result<Disc?, DiscError>) -> Void) {
+    func createDisc(brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, discImage: UIImage, completion: @escaping (Result<Disc?, DiscError>) -> Void) {
         
         guard let currentCollection = CollectionController.shared.currentCollection else { return completion(.failure(.noCollectionForDisc))}
         
@@ -52,7 +52,6 @@ class DiscController {
                 return completion(.failure(.ckError(error)))
             }
             guard let myRecord = record else { return completion(.failure(.couldNotUnwrap))}
-            
             guard let disc = Disc(ckRecord: myRecord) else { return completion(.failure(.couldNotUnwrap))}
             
             completion(.success(disc))
