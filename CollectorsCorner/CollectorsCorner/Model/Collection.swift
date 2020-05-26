@@ -26,11 +26,11 @@ class Collection {
     
     let collectorUserName: String
     let collectorStateOfOrigin: String
-    let collectorNumOfYearsCollecting: Int?
+    var collectorNumOfYearsCollecting: Int = 0
     
     var userReference: CKRecord.Reference?
     var user: User?
-    var recordID: CKRecord.ID
+    var collectionCKRecordID: CKRecord.ID
     var photoData: Data?
     
     var photoAsset: CKAsset? {
@@ -57,13 +57,13 @@ class Collection {
         }
     }
     
-    init(collectionImage: UIImage, collectorsUserName: String, collectorStateOfOrigin: String, collectorNumOfYearsCollecting: Int?, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(collectionImage: UIImage, collectorsUserName: String, collectorStateOfOrigin: String, collectorNumOfYearsCollecting: Int, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
         
         self.collectorUserName = collectorsUserName
         self.collectorStateOfOrigin = collectorStateOfOrigin
         self.collectorNumOfYearsCollecting = collectorNumOfYearsCollecting
         self.userReference = userReference
-        self.recordID = recordID
+        self.collectionCKRecordID = recordID
         self.collectionImage = collectionImage
     }
 }
@@ -92,7 +92,7 @@ extension Collection {
 
 extension CKRecord {
     convenience init(collection: Collection) {
-        self.init(recordType: CollectionStrings.recordTypeKey, recordID: collection.recordID)
+        self.init(recordType: CollectionStrings.recordTypeKey, recordID: collection.collectionCKRecordID)
         
         self.setValuesForKeys([
             
