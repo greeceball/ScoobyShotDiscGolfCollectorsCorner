@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/greeceball/Desktop/GitHub/Personal Project/ScoobyShotDiscGolfCollectorsCorner/CollectorsCorner/CollectorsCorner/Controllers/View Controllers/Profile/ProfileViewController.swift">
+   </FileRef>
+   <FileRef
       location = "self:CollectorsCorner.xcodeproj">
    </FileRef>
 </Workspace>

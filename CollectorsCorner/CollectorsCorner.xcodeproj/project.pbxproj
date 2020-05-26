@@ -12,11 +12,20 @@
 		3404C7F32476DA7D0069AFBC /* CollectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404C7F22476DA7D0069AFBC /* CollectionsTableViewController.swift */; };
 		3404C7F52476DDA90069AFBC /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404C7F42476DDA90069AFBC /* UserDefaults+Helpers.swift */; };
 		34174E3D24733DA000037961 /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34174E3C24733DA000037961 /* SearchableRecord.swift */; };
+		341EAC3A247D6FDA00761ECC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC39247D6FDA00761ECC /* ProfileViewController.swift */; };
+		341EAC3C247D715800761ECC /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC3B247D715800761ECC /* States.swift */; };
+		341EAC3E247D719C00761ECC /* Years.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC3D247D719C00761ECC /* Years.swift */; };
 		34562C70247582C300EE52D3 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34562C6F247582C300EE52D3 /* Report.swift */; };
 		34562C722475935100EE52D3 /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34562C712475935100EE52D3 /* ReportController.swift */; };
+		3466715E247C6BCD00F4D612 /* CreateDiscViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3466715D247C6BCD00F4D612 /* CreateDiscViewController.swift */; };
+		34667160247C6F8B00F4D612 /* DiscCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3466715F247C6F8B00F4D612 /* DiscCell.swift */; };
+		34667165247C7CA900F4D612 /* CollectionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34667164247C7CA900F4D612 /* CollectionsCell.swift */; };
+		34667167247C7E4B00F4D612 /* DiscCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34667166247C7E4B00F4D612 /* DiscCustomCell.xib */; };
+		34667169247D686200F4D612 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34667168247D686200F4D612 /* PhotoPicker.storyboard */; };
+		3466716B247D687B00F4D612 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3466716A247D687B00F4D612 /* PhotoPickerViewController.swift */; };
+		3466716D247D6ED200F4D612 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3466716C247D6ED200F4D612 /* UpdateProfileViewController.swift */; };
 		346A0A4B2477146100DBC4C4 /* MyCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346A0A4A2477146100DBC4C4 /* MyCollectionTableViewController.swift */; };
 		346A0A4D247716D600DBC4C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346A0A4C247716D600DBC4C4 /* TabBarController.swift */; };
-		346A0A522477367500DBC4C4 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346A0A512477367500DBC4C4 /* UpdateProfileViewController.swift */; };
 		347E1D9B244DEBA4001B4099 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347E1D9A244DEBA4001B4099 /* AuthenticationServices.framework */; };
 		347E7C93244D285300367DC6 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347E7C92244D285300367DC6 /* LogInController.swift */; };
 		349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349BA1892444D0D50099A2A0 /* AppDelegate.swift */; };
@@ -45,11 +54,20 @@
 		3404C7F22476DA7D0069AFBC /* CollectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsTableViewController.swift; sourceTree = "<group>"; };
 		3404C7F42476DDA90069AFBC /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
 		34174E3C24733DA000037961 /* SearchableRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
+		341EAC39247D6FDA00761ECC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		341EAC3B247D715800761ECC /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		341EAC3D247D719C00761ECC /* Years.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Years.swift; sourceTree = "<group>"; };
 		34562C6F247582C300EE52D3 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		34562C712475935100EE52D3 /* ReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
+		3466715D247C6BCD00F4D612 /* CreateDiscViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiscViewController.swift; sourceTree = "<group>"; };
+		3466715F247C6F8B00F4D612 /* DiscCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscCell.swift; sourceTree = "<group>"; };
+		34667164247C7CA900F4D612 /* CollectionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsCell.swift; sourceTree = "<group>"; };
+		34667166247C7E4B00F4D612 /* DiscCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiscCustomCell.xib; sourceTree = "<group>"; };
+		34667168247D686200F4D612 /* PhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = PhotoPicker.storyboard; path = CollectorsCorner/StoryBoards/PhotoPicker.storyboard; sourceTree = SOURCE_ROOT; };
+		3466716A247D687B00F4D612 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoPickerViewController.swift; path = "CollectorsCorner/Controllers/View Controllers/PhotoPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3466716C247D6ED200F4D612 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		346A0A4A2477146100DBC4C4 /* MyCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionTableViewController.swift; sourceTree = "<group>"; };
 		346A0A4C247716D600DBC4C4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		346A0A512477367500DBC4C4 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		347E1D9A244DEBA4001B4099 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		347E7C92244D285300367DC6 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		349BA1862444D0D50099A2A0 /* CollectorsCorner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectorsCorner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +106,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34667161247C6F9500F4D612 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3466715F247C6F8B00F4D612 /* DiscCell.swift */,
+				34667164247C7CA900F4D612 /* CollectionsCell.swift */,
+				34667166247C7E4B00F4D612 /* DiscCustomCell.xib */,
+			);
+			path = "Custom Cell";
+			sourceTree = "<group>";
+		};
 		3469BA16247C45940044724A /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				346A0A4A2477146100DBC4C4 /* MyCollectionTableViewController.swift */,
+				3466715D247C6BCD00F4D612 /* CreateDiscViewController.swift */,
 			);
 			path = MyCollection;
 			sourceTree = "<group>";
@@ -115,7 +144,8 @@
 		3469BA19247C45B80044724A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				346A0A512477367500DBC4C4 /* UpdateProfileViewController.swift */,
+				341EAC39247D6FDA00761ECC /* ProfileViewController.swift */,
+				3466716C247D6ED200F4D612 /* UpdateProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -199,11 +229,13 @@
 		349BA1A32444D17D0099A2A0 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3466716A247D687B00F4D612 /* PhotoPickerViewController.swift */,
 				3469BA16247C45940044724A /* Login */,
 				3469BA18247C45AD0044724A /* Collections */,
 				3469BA17247C45A20044724A /* MyCollection */,
 				3469BA1B247C45F40044724A /* TabBar */,
 				3469BA19247C45B80044724A /* Profile */,
+				34667161247C6F9500F4D612 /* Custom Cell */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -226,6 +258,8 @@
 				349BA1AA2444D2650099A2A0 /* Collection.swift */,
 				349BA1AC2444D2790099A2A0 /* Disc.swift */,
 				34562C6F247582C300EE52D3 /* Report.swift */,
+				341EAC3B247D715800761ECC /* States.swift */,
+				341EAC3D247D719C00761ECC /* Years.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,6 +272,7 @@
 				3404C7EE2475E07A0069AFBC /* Collections.storyboard */,
 				3404C7EC2475E0620069AFBC /* MyCollection.storyboard */,
 				34E9BC8E2475BC0200C4DD71 /* UpdateProfile.storyboard */,
+				34667168247D686200F4D612 /* PhotoPicker.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -314,12 +349,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				34CBCBDA2475B49D007A1BAB /* LogIn.storyboard in Resources */,
+				34667167247C7E4B00F4D612 /* DiscCustomCell.xib in Resources */,
 				3404C7ED2475E0620069AFBC /* MyCollection.storyboard in Resources */,
 				349BA1962444D0D50099A2A0 /* LaunchScreen.storyboard in Resources */,
 				3404C7EF2475E07A0069AFBC /* Collections.storyboard in Resources */,
 				349BA1932444D0D50099A2A0 /* Assets.xcassets in Resources */,
 				349BA1912444D0D50099A2A0 /* Main.storyboard in Resources */,
 				34E9BC8F2475BC0200C4DD71 /* UpdateProfile.storyboard in Resources */,
+				34667169247D686200F4D612 /* PhotoPicker.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,19 +373,26 @@
 				3404C7F32476DA7D0069AFBC /* CollectionsTableViewController.swift in Sources */,
 				349BA1AD2444D2790099A2A0 /* Disc.swift in Sources */,
 				349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */,
+				341EAC3C247D715800761ECC /* States.swift in Sources */,
 				349BA18C2444D0D50099A2A0 /* SceneDelegate.swift in Sources */,
+				3466715E247C6BCD00F4D612 /* CreateDiscViewController.swift in Sources */,
 				34174E3D24733DA000037961 /* SearchableRecord.swift in Sources */,
 				346A0A4D247716D600DBC4C4 /* TabBarController.swift in Sources */,
+				341EAC3A247D6FDA00761ECC /* ProfileViewController.swift in Sources */,
+				3466716B247D687B00F4D612 /* PhotoPickerViewController.swift in Sources */,
 				347E7C93244D285300367DC6 /* LogInController.swift in Sources */,
+				34667165247C7CA900F4D612 /* CollectionsCell.swift in Sources */,
+				3466716D247D6ED200F4D612 /* UpdateProfileViewController.swift in Sources */,
 				349BA1AB2444D2650099A2A0 /* Collection.swift in Sources */,
 				D95F12FD9FCF5C7813CD6680 /* UserController.swift in Sources */,
 				D95F1278B5529FB10DE646FD /* DiscController.swift in Sources */,
 				D95F1CC014429218374DCD11 /* CollectionController.swift in Sources */,
 				34CBCBD82475A3B9007A1BAB /* ReportError.swift in Sources */,
 				3404C7F52476DDA90069AFBC /* UserDefaults+Helpers.swift in Sources */,
+				341EAC3E247D719C00761ECC /* Years.swift in Sources */,
 				34562C70247582C300EE52D3 /* Report.swift in Sources */,
 				D95F1AC68D8D16DF851C99C9 /* UserError.swift in Sources */,
-				346A0A522477367500DBC4C4 /* UpdateProfileViewController.swift in Sources */,
+				34667160247C6F8B00F4D612 /* DiscCell.swift in Sources */,
 				D95F157E7973AE3EC91913F7 /* CollectionError.swift in Sources */,
 				D95F1FF79EFC19D007A79FC0 /* DiscError.swift in Sources */,
 			);
