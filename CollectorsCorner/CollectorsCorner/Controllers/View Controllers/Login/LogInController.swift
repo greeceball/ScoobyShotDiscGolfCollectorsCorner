@@ -78,13 +78,17 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
             UserController.shared.doesRecordExist(inRecordType: "User", withField: "userName", equalTo: userName) { (result) in
                 if result == false {
                     
-                    let user = UserController.shared.createUserWith(profileImage: nil, username: userName, firstName: firstName, lastName: lastName, email: userEmail, state: "", yearsCollecting: 0, myCollection: "")
+                    let userCollection = CollectionController.shared.createCollection(userName: userName, stateOfOrgin: "", numOfYearsCollecting: 0, collectionImage: nil)
+                    
+                    let user = UserController.shared.createUserWith(profileImage: nil, username: userName, firstName: firstName, lastName: lastName, email: userEmail, state: "", yearsCollecting: 0, myCollection: "\(userCollection.collectionCKRecordID.recordName)")
                     
                     UserController.shared.saveUser(user: user) { (result) in
                         switch result {
                         case true:
                             self.user = user
-                            let userCollection = CollectionController.shared.createCollection(with: userName, collectorStateOfOrigin: "", collectorNumOfYearsCollection: 0, collectionImage: nil) { (result) in
+                            UserDefaults.standard.set(userCollection.collectionCKRecordID.recordName, forKey: "userCollectionID")
+                            UserDefaults.standard.set(userCollection.collectionCKRecordID, forKey: "userCollectionCKRecordID")
+                            CollectionController.shared.saveCollection(collection: userCollection) { (result) in
                                 self.saveUserID(credentials: credentials)
                                 DispatchQueue.main.async {
                                     self.finishLoggingIn()

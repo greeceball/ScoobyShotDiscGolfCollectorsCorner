@@ -44,8 +44,10 @@ class CreateDiscViewController: UIViewController {
         guard let brand = brandTextField.text, !brand.isEmpty, let mold = moldTextField.text, !mold.isEmpty, let discImage = self.image else { return }
         let run = Int(runTextField.text!)
         
-        let newDisc = DiscController.shared.createDisc(brand: brand, mold: mold, color: colorTextField.text, plastic: plasticTextField.text, flightPath: flightPathText, run: run, discImage: self.image ?? #imageLiteral(resourceName: "NoImageAvailable")) { result in
-            
+        let newDisc = DiscController.shared.createDisc(brand: brand, mold: mold, color: colorTextField.text, plastic: plasticTextField.text, flightPath: flightPathText, run: run, discImage: discImage)
+        
+        
+        DiscController.shared.saveDisc(disc: newDisc){ result in
             DispatchQueue.main.async {
                 self.navigationController?.popViewController(animated: true)
             }

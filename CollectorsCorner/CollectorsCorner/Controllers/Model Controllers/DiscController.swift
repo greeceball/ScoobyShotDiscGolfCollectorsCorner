@@ -20,15 +20,19 @@ class DiscController {
     
     // Mark: - CRUD Func's
     // Mark: - Create
-    func createDisc(brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, discImage: UIImage, completion: @escaping (Result<Disc?, DiscError>) -> Void) {
+    func createDisc(brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, discImage: UIImage?) -> Disc {
+        let currentCollection = UserDefaults.standard.value(forKey: "userCollectionID")
         
-        guard let currentCollection = CollectionController.shared.currentCollection else { return completion(.failure(.noCollectionForDisc))}
+        let reference = CKRecord.Reference(recordID: currentCollection as! CKRecord.ID, action: .deleteSelf)
         
-        let reference = CKRecord.Reference(recordID: currentCollection.collectionCKRecordID, action: .deleteSelf)
+        let newDisc = Disc(discImage: discImage, brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, collectionReference: reference)
         
-        let newDisc = Disc(discImage: discImage, brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, userReference: reference)
-        
-        let discRecord = CKRecord(disc: newDisc)
+        return newDisc
+    }
+    
+    func saveDisc(disc: Disc, completion: @escaping (Result<Disc?, DiscError>) -> Void) {
+                
+        let discRecord = CKRecord(disc: disc)
         
         publicDB.save(discRecord) { (record, error) in
             if let error = error {

@@ -50,8 +50,6 @@ class DiscDetailsViewController: UIViewController {
         colorLabel.text = currentDisc.color
         plasticLabel.text = currentDisc.plastic
         flightPathLabel.text = currentDisc.flightPath
-        runLabel.text = String(currentDisc.run)
-        
+        runLabel.text = String(describing: currentDisc.run)
     }
-
 }

@@ -20,7 +20,7 @@ class UserController {
     // Mark: - Create
     func createUserWith(profileImage: UIImage?, username: String, firstName: String, lastName: String, email: String, state: String?, yearsCollecting: Int?, myCollection: String) -> User {
         
-        let newUser = User(username: username, firstName: firstName, lastName: lastName, email: email, state: state, yearsCollecting: yearsCollecting, myCollection: myCollection, profileImage: nil)
+        let newUser = User(username: username, firstName: firstName, lastName: lastName, email: email, myCollection: myCollection)
         
         return newUser
     }
@@ -125,7 +125,8 @@ class UserController {
     
     // Mark: - Helper Func's
     func fetchUserFor(_ collection: Collection, completion: @escaping (Result<User, UserError>) -> Void) {
-        guard let userID = collection.userReference?.recordID else { return completion(.failure(.noUserForCollection))}
+        
+        let userID = collection.collectorUserName
         
         let predicate = NSPredicate(format: "%K == %@", argumentArray: ["recordID", userID])
         let query = CKQuery(recordType: UserConstants.TypeKey, predicate: predicate)

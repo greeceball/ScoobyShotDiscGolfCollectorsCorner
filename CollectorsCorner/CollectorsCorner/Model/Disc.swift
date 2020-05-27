@@ -29,11 +29,10 @@ class Disc {
     
     var brand: String
     var mold: String
-    var color: String
-    var plastic: String
-    var flightPath: String
-    var run: Int
-    
+    var color: String?
+    var plastic: String?
+    var flightPath: String?
+    var run: Int?
     var collectionReference: CKRecord.Reference?
     var user: User?
     var discCKRecordID: CKRecord.ID
@@ -64,7 +63,7 @@ class Disc {
         }
     }
     
-    init(discImage: UIImage, brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(discImage: UIImage?, brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, collectionReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
         
         self.brand = brand
         self.mold = mold
@@ -72,7 +71,7 @@ class Disc {
         self.plastic = plastic ?? "---"
         self.flightPath = flightPath ?? "---"
         self.run = run ?? 0
-        self.collectionReference = userReference
+        self.collectionReference = collectionReference
         self.discCKRecordID = recordID
         self.discImage = discImage
     }
@@ -99,7 +98,7 @@ extension Disc {
                 print("Could not transform asset to data.")
             }
         }
-        self.init(discImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, userReference: collectionReference)
+        self.init(discImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, collectionReference: collectionReference)
     }
 }
 
@@ -123,10 +122,6 @@ extension  CKRecord {
         
         if disc.collectionReference != nil {
             self.setValue(disc.collectionReference, forKey: DiscStrings.collectionReferenceKey)
-        }
-        
-        if disc.discImage != nil {
-            self.setValue(disc.discImage, forKey: DiscStrings.discImageKey)
         }
     }
 }

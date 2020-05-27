@@ -18,22 +18,22 @@ struct CollectionStrings {
     fileprivate static let collectorStateOfOriginKey = "collectorStateOfOrigin"
     fileprivate static let collectorNumOfYearsCollectingKey = "collectorNumOfYearsCollecting"
     fileprivate static let photoAssetKey = "photoAsset"
-    fileprivate static let userReferenceKey = "userReference"
-    fileprivate static let collectionCKRecordIDKey = "collectionCKRecordID"
+    fileprivate static let collectionCKRecordIDKey = "collectionID"
 }
 
 class Collection {
     
+    var user: User?
+    
     let collectorUserName: String
     let collectorStateOfOrigin: String?
     var collectorNumOfYearsCollecting: Int = 0
-    var userReference: CKRecord.Reference?
-    var user: User?
     var collectionCKRecordID: CKRecord.ID
     var photoData: Data?
     
     var photoAsset: CKAsset? {
         get {
+            guard photoData != nil else { return nil }
             let tempDirectory = NSTemporaryDirectory()
             let tempDirectoryURL = URL(fileURLWithPath: tempDirectory)
             let fileURL = tempDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
@@ -55,12 +55,11 @@ class Collection {
         }
     }
     
-    init(collectionImage: UIImage, collectorsUserName: String, collectorStateOfOrigin: String, collectorNumOfYearsCollecting: Int, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(collectionImage: UIImage?, collectorsUserName: String, collectorStateOfOrigin: String?, collectorNumOfYearsCollecting: Int?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
         
         self.collectorUserName = collectorsUserName
         self.collectorStateOfOrigin = collectorStateOfOrigin
-        self.collectorNumOfYearsCollecting = collectorNumOfYearsCollecting
-        self.userReference = userReference
+        self.collectorNumOfYearsCollecting = collectorNumOfYearsCollecting ?? 0
         self.collectionCKRecordID = recordID
         self.collectionImage = collectionImage
     }
@@ -72,7 +71,6 @@ extension Collection {
             let collectorStateOfOrigin = ckRecord[CollectionStrings.collectorStateOfOriginKey] as? String,
             let collectorNumOfYearsCollecting = ckRecord[CollectionStrings.collectorNumOfYearsCollectingKey] as? Int
             else { return nil }
-        let userReference = ckRecord[CollectionStrings.userReferenceKey] as? CKRecord.Reference
         
         var foundPhoto: UIImage?
         
@@ -84,7 +82,7 @@ extension Collection {
                 print("Could not transform asset to data.")
             }
         }
-        self.init(collectionImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), collectorsUserName: collectorUserName, collectorStateOfOrigin: collectorStateOfOrigin, collectorNumOfYearsCollecting: collectorNumOfYearsCollecting, userReference: userReference)
+        self.init(collectionImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), collectorsUserName: collectorUserName, collectorStateOfOrigin: collectorStateOfOrigin, collectorNumOfYearsCollecting: collectorNumOfYearsCollecting)
     }
 }
 
@@ -93,23 +91,15 @@ extension CKRecord {
         self.init(recordType: CollectionStrings.recordTypeKey, recordID: collection.collectionCKRecordID)
         
         self.setValuesForKeys([
-            
+            CollectionStrings.collectionCKRecordIDKey : collection.collectionCKRecordID.recordName,
             CollectionStrings.collectorUserNameKey : collection.collectorUserName,
-            CollectionStrings.collectorStateOfOriginKey : collection.collectorStateOfOrigin,
+            CollectionStrings.collectorStateOfOriginKey : collection.collectorStateOfOrigin as Any,
             CollectionStrings.collectorNumOfYearsCollectingKey : collection.collectorNumOfYearsCollecting
             
         ])
         
         if collection.photoAsset != nil {
             self.setValue(collection.photoAsset, forKey: CollectionStrings.photoAssetKey)
-        }
-        
-        if collection.userReference != nil {
-            self.setValue(collection.userReference, forKey: CollectionStrings.userReferenceKey)
-        }
-        
-        if collection.collectionImage != nil {
-            self.setValue(collection.collectionImage, forKey: CollectionStrings.collectionImageKey)
         }
     }
 }
