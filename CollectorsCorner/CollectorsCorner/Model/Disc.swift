@@ -21,7 +21,7 @@ struct DiscStrings {
     fileprivate static let flightPathKey = "flightPath"
     fileprivate static let runKey = "run"
     fileprivate static let photoAssetKey = "photoAsset"
-    fileprivate static let collectionReferenceKey = "collectionReference"
+    fileprivate static let collectionRecordIDKey = "collectionRecordID"
     
 }
 
@@ -33,7 +33,7 @@ class Disc {
     var plastic: String?
     var flightPath: String?
     var run: Int?
-    var collectionReference: CKRecord.Reference?
+    var collectionRecordID: String
     var user: User?
     var discCKRecordID: CKRecord.ID
     var photoData: Data?
@@ -63,7 +63,7 @@ class Disc {
         }
     }
     
-    init(discImage: UIImage?, brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, collectionReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(discImage: UIImage?, brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, collectionRecordID: String, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
         
         self.brand = brand
         self.mold = mold
@@ -71,7 +71,7 @@ class Disc {
         self.plastic = plastic ?? "---"
         self.flightPath = flightPath ?? "---"
         self.run = run ?? 0
-        self.collectionReference = collectionReference
+        self.collectionRecordID = collectionRecordID
         self.discCKRecordID = recordID
         self.discImage = discImage
     }
@@ -84,9 +84,10 @@ extension Disc {
             let color = ckRecord[DiscStrings.colorKey] as? String,
             let plastic = ckRecord[DiscStrings.plasticKey] as? String,
             let flightPath = ckRecord[DiscStrings.flightPathKey] as? String,
-            let run = ckRecord[DiscStrings.runKey] as? Int
+            let run = ckRecord[DiscStrings.runKey] as? Int,
+            let collectionRecordID = ckRecord[DiscStrings.collectionRecordIDKey] as? String
             else { return nil }
-        let collectionReference = ckRecord[DiscStrings.collectionReferenceKey] as? CKRecord.Reference
+        
         
         var foundPhoto: UIImage?
         
@@ -98,7 +99,7 @@ extension Disc {
                 print("Could not transform asset to data.")
             }
         }
-        self.init(discImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, collectionReference: collectionReference)
+        self.init(discImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, collectionRecordID: collectionRecordID)
     }
 }
 
@@ -110,18 +111,15 @@ extension  CKRecord {
             
             DiscStrings.brandKey : disc.brand,
             DiscStrings.moldKey : disc.mold,
-            DiscStrings.colorKey : disc.color,
-            DiscStrings.plasticKey : disc.plastic,
-            DiscStrings.flightPathKey : disc.flightPath,
-            DiscStrings.runKey : disc.run
+            DiscStrings.colorKey : disc.color as Any,
+            DiscStrings.plasticKey : disc.plastic as Any,
+            DiscStrings.flightPathKey : disc.flightPath as Any,
+            DiscStrings.runKey : disc.run as Any,
+            DiscStrings.collectionRecordIDKey: disc.collectionRecordID
         ])
         
         if disc.photoAsset != nil {
             self.setValue(disc.photoAsset, forKey: DiscStrings.photoAssetKey)
-        }
-        
-        if disc.collectionReference != nil {
-            self.setValue(disc.collectionReference, forKey: DiscStrings.collectionReferenceKey)
         }
     }
 }

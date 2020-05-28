@@ -21,11 +21,9 @@ class DiscController {
     // Mark: - CRUD Func's
     // Mark: - Create
     func createDisc(brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, discImage: UIImage?) -> Disc {
-        let currentCollection = UserDefaults.standard.value(forKey: "userCollectionID")
+        let currentCollection = UserDefaults.standard.value(forKey: "userCollectionID") as! String 
         
-        let reference = CKRecord.Reference(recordID: currentCollection as! CKRecord.ID, action: .deleteSelf)
-        
-        let newDisc = Disc(discImage: discImage, brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, collectionReference: reference)
+        let newDisc = Disc(discImage: discImage, brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, collectionRecordID: currentCollection)
         
         return newDisc
     }

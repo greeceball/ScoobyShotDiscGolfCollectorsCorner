@@ -13,7 +13,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     
     //MARK: - Properties and Outlets
     
-    @IBOutlet weak var secondaryStackView: UIStackView!
+    @IBOutlet weak var logInStackView: UIStackView!
     
     let defaults = UserDefaults.standard
     var user: User?
@@ -36,8 +36,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
         signInBtn.cornerRadius = 10
         //Add button on some view or stack
         
-        secondaryStackView?.addArrangedSubview(signInBtn)
-        //self.loginProviderStackView.addArrangedSubview(signInBtn)
+        logInStackView?.addArrangedSubview(signInBtn)
     }
     
     @objc func handleAppleIdRequest() {
@@ -87,7 +86,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
                         case true:
                             self.user = user
                             UserDefaults.standard.set(userCollection.collectionCKRecordID.recordName, forKey: "userCollectionID")
-                            UserDefaults.standard.set(userCollection.collectionCKRecordID, forKey: "userCollectionCKRecordID")
+                            
                             CollectionController.shared.saveCollection(collection: userCollection) { (result) in
                                 self.saveUserID(credentials: credentials)
                                 DispatchQueue.main.async {

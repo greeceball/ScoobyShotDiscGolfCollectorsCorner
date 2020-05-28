@@ -52,8 +52,6 @@ class CreateDiscViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }
-        
-        
     }
     
     
@@ -78,15 +76,7 @@ extension CreateDiscViewController: UIPickerViewDelegate, UIPickerViewDataSource
         flightPathPickerView.dataSource = self
         flightPathPickerView.delegate = self
     }
-    
-//    func loadPickerData() {
-//
-//        self.speedPickerData = FlightPath.speed
-//        //self.glidePickerData = FlightPath.glide
-//        self.turnPickerData = FlightPath.turn
-//        self.fadePickerData = FlightPath.fade
-//
-//    }
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 4
     }

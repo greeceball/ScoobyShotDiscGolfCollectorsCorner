@@ -32,7 +32,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="kHO-8n-zNs"/>
                     <connections>
-                        <outlet property="secondaryStackView" destination="tNa-Gj-ynv" id="fBF-nb-1pq"/>
+                        <outlet property="logInStackView" destination="tNa-Gj-ynv" id="fBF-nb-1pq"/>
                         <segue destination="OtM-A7-DXM" kind="show" identifier="toMainVC" id="oJK-Sc-fLG"/>
                     </connections>
                 </viewController>
