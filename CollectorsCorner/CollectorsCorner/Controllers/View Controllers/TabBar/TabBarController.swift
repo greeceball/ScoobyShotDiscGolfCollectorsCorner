@@ -1,5 +1,5 @@
 //
-//  UpdateProfileViewController.swift
+//  TabBarViewController.swift
 //  CollectorsCorner
 //
 //  Created by Colby Harris on 5/21/20.
@@ -8,18 +8,19 @@
 
 import UIKit
 
-class UpdateProfileViewController: UIViewController {
+class TabBarController: UITabBarController {
 
+    //MARK: - Properties
+    static let shared = TabBarController()
+    var user: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func logOutButtonTapped(_ sender: Any) {
-        UserDefaults.standard.set("", forKey: "userID")
-    }
-    
+
     /*
     // MARK: - Navigation
 
@@ -31,4 +32,3 @@ class UpdateProfileViewController: UIViewController {
     */
 
 }
-

@@ -13,7 +13,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     
     //MARK: - Properties and Outlets
     
-    @IBOutlet weak var secondaryStackView: UIStackView!
+    @IBOutlet weak var logInStackView: UIStackView!
     
     let defaults = UserDefaults.standard
     var user: User?
@@ -26,9 +26,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(appleIDStateRevoked), name: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil)
         
-        //check if userdefaults are not nil
         checkUserDefaultsIsNil()
-        
         setUpSignInAppleButton()
     }
     
@@ -38,8 +36,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
         signInBtn.cornerRadius = 10
         //Add button on some view or stack
         
-        secondaryStackView?.addArrangedSubview(signInBtn)
-        //self.loginProviderStackView.addArrangedSubview(signInBtn)
+        logInStackView?.addArrangedSubview(signInBtn)
     }
     
     @objc func handleAppleIdRequest() {
@@ -57,7 +54,6 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     }
     
     func finishLoggingIn() {
-
         performSegue(withIdentifier: "toMainVC", sender: nil)
     }
     
@@ -80,29 +76,31 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
             
             UserController.shared.doesRecordExist(inRecordType: "User", withField: "userName", equalTo: userName) { (result) in
                 if result == false {
-                    let user = UserController.shared.createUserWith(profileImage: nil, username: userName, firstName: firstName, lastName: lastName, email: userEmail, state: "nil", yearsCollecting: 0)
+                    
+                    let userCollection = CollectionController.shared.createCollection(userName: userName, stateOfOrgin: "", numOfYearsCollecting: 0, collectionImage: nil)
+                    
+                    let user = UserController.shared.createUserWith(profileImage: nil, username: userName, firstName: firstName, lastName: lastName, email: userEmail, state: "", yearsCollecting: 0, myCollection: "\(userCollection.collectionCKRecordID.recordName)")
                     
                     UserController.shared.saveUser(user: user) { (result) in
                         switch result {
                         case true:
                             self.user = user
+                            UserDefaults.standard.set(userCollection.collectionCKRecordID.recordName, forKey: "userCollectionID")
                             
-                            self.saveUserID(credentials: credentials)
-                            DispatchQueue.main.async {
-                                self.finishLoggingIn()
+                            CollectionController.shared.saveCollection(collection: userCollection) { (result) in
+                                self.saveUserID(credentials: credentials)
+                                DispatchQueue.main.async {
+                                    self.finishLoggingIn()
+                                }
                             }
+                            
                         case false:
                             print("An error occured when trying to save user to cloudKit.")
                         }
                     }
                 } else if result == true {
                     DispatchQueue.main.async {
-//                        let alertController = UIAlertController(title: "UserName already exists", message: nil, preferredStyle: .alert)
-//                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-//
-//                        alertController.addAction(cancelAction)
-//                        self.present(alertController, animated: true)
-//                        self.view.setNeedsDisplay()
+                        self.saveUserID(credentials: credentials)
                         self.finishLoggingIn()
                     }
                 }
@@ -124,7 +122,7 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     }
     
     func saveUserID(credentials: ASAuthorizationAppleIDCredential) {
-         self.defaults.set(credentials.user, forKey: Keys.userID)
+        self.defaults.set(credentials.user, forKey: Keys.userID)
     }
     
     func checkUserDefaultsIsNil() {

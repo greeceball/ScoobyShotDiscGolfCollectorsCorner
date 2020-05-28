@@ -10,9 +10,13 @@ import UIKit
 
 class MyCollectionTableViewController: UITableViewController {
 
+    //MARK: - Properties and outlets
+    @IBOutlet var myCollectionTableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadMyCollection()
     }
     
     // MARK: - Table view data source
@@ -29,7 +33,7 @@ class MyCollectionTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "discCell", for: indexPath)
 
         // Configure the cell...
 
@@ -63,8 +67,6 @@ class MyCollectionTableViewController: UITableViewController {
         return true
     }
 
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -74,4 +76,11 @@ class MyCollectionTableViewController: UITableViewController {
     }
     
 
+}
+
+extension MyCollectionTableViewController {
+     
+    func loadMyCollection() {
+        
+    }
 }

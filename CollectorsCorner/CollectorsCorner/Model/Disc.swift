@@ -21,7 +21,7 @@ struct DiscStrings {
     fileprivate static let flightPathKey = "flightPath"
     fileprivate static let runKey = "run"
     fileprivate static let photoAssetKey = "photoAsset"
-    fileprivate static let userReferenceKey = "userReference"
+    fileprivate static let collectionRecordIDKey = "collectionRecordID"
     
 }
 
@@ -29,12 +29,11 @@ class Disc {
     
     var brand: String
     var mold: String
-    var color: String = "---"
-    var plastic: String
-    var flightPath: String = ""
-    var run: Int = 0
-    
-    var userReference: CKRecord.Reference?
+    var color: String?
+    var plastic: String?
+    var flightPath: String?
+    var run: Int?
+    var collectionRecordID: String
     var user: User?
     var discCKRecordID: CKRecord.ID
     var photoData: Data?
@@ -64,15 +63,15 @@ class Disc {
         }
     }
     
-    init(discImage: UIImage, brand: String, mold: String, color: String, plastic: String, flightPath: String, run: Int, userReference: CKRecord.Reference?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(discImage: UIImage?, brand: String, mold: String, color: String?, plastic: String?, flightPath: String?, run: Int?, collectionRecordID: String, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
         
         self.brand = brand
         self.mold = mold
-        self.color = color
-        self.plastic = plastic
-        self.flightPath = flightPath
-        self.run = run
-        self.userReference = userReference
+        self.color = color ?? "---"
+        self.plastic = plastic ?? "---"
+        self.flightPath = flightPath ?? "---"
+        self.run = run ?? 0
+        self.collectionRecordID = collectionRecordID
         self.discCKRecordID = recordID
         self.discImage = discImage
     }
@@ -85,9 +84,10 @@ extension Disc {
             let color = ckRecord[DiscStrings.colorKey] as? String,
             let plastic = ckRecord[DiscStrings.plasticKey] as? String,
             let flightPath = ckRecord[DiscStrings.flightPathKey] as? String,
-            let run = ckRecord[DiscStrings.runKey] as? Int
+            let run = ckRecord[DiscStrings.runKey] as? Int,
+            let collectionRecordID = ckRecord[DiscStrings.collectionRecordIDKey] as? String
             else { return nil }
-        let userReference = ckRecord[DiscStrings.userReferenceKey] as? CKRecord.Reference
+        
         
         var foundPhoto: UIImage?
         
@@ -99,7 +99,7 @@ extension Disc {
                 print("Could not transform asset to data.")
             }
         }
-        self.init(discImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, userReference: userReference)
+        self.init(discImage: foundPhoto ?? #imageLiteral(resourceName: "NoImageAvailable"), brand: brand, mold: mold, color: color, plastic: plastic, flightPath: flightPath, run: run, collectionRecordID: collectionRecordID)
     }
 }
 
@@ -111,22 +111,15 @@ extension  CKRecord {
             
             DiscStrings.brandKey : disc.brand,
             DiscStrings.moldKey : disc.mold,
-            DiscStrings.colorKey : disc.color,
-            DiscStrings.plasticKey : disc.plastic,
-            DiscStrings.flightPathKey : disc.flightPath,
-            DiscStrings.runKey : disc.run
+            DiscStrings.colorKey : disc.color as Any,
+            DiscStrings.plasticKey : disc.plastic as Any,
+            DiscStrings.flightPathKey : disc.flightPath as Any,
+            DiscStrings.runKey : disc.run as Any,
+            DiscStrings.collectionRecordIDKey: disc.collectionRecordID
         ])
         
         if disc.photoAsset != nil {
             self.setValue(disc.photoAsset, forKey: DiscStrings.photoAssetKey)
-        }
-        
-        if disc.userReference != nil {
-            self.setValue(disc.userReference, forKey: DiscStrings.userReferenceKey)
-        }
-        
-        if disc.discImage != nil {
-            self.setValue(disc.discImage, forKey: DiscStrings.discImageKey)
         }
     }
 }
