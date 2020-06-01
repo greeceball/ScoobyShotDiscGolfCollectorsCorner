@@ -22,11 +22,11 @@ struct DiscStrings {
     fileprivate static let runKey = "run"
     fileprivate static let photoAssetKey = "photoAsset"
     fileprivate static let collectionRecordIDKey = "collectionRecordID"
-    
+    fileprivate static let discIDKey = "discID"
 }
 
 class Disc {
-    
+    var discID: String
     var brand: String
     var mold: String
     var color: String?
@@ -73,6 +73,7 @@ class Disc {
         self.run = run ?? 0
         self.collectionRecordID = collectionRecordID
         self.discCKRecordID = recordID
+        self.discID = collectionRecordID
         self.discImage = discImage
     }
 }
@@ -115,7 +116,8 @@ extension  CKRecord {
             DiscStrings.plasticKey : disc.plastic as Any,
             DiscStrings.flightPathKey : disc.flightPath as Any,
             DiscStrings.runKey : disc.run as Any,
-            DiscStrings.collectionRecordIDKey: disc.collectionRecordID
+            DiscStrings.collectionRecordIDKey: disc.collectionRecordID,
+            DiscStrings.discIDKey : disc.discCKRecordID.recordName
         ])
         
         if disc.photoAsset != nil {

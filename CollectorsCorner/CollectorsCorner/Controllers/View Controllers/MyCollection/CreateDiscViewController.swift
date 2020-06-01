@@ -9,7 +9,7 @@
 import UIKit
 
 class CreateDiscViewController: UIViewController {
-
+    
     //MARK: - Outlets and Properties
     @IBOutlet weak var discImageContainerView: UIView!
     @IBOutlet weak var brandTextField: UITextField!
@@ -34,18 +34,32 @@ class CreateDiscViewController: UIViewController {
         configView()
         loadCurrentUser()
         //loadPickerData()
-
+        
     }
     func loadCurrentUser() {
         self.currentUser = TabBarController.shared.user
     }
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        var collectionToUpdate: [Disc] = []
         guard let brand = brandTextField.text, !brand.isEmpty, let mold = moldTextField.text, !mold.isEmpty, let discImage = self.image else { return }
         let run = Int(runTextField.text!)
         
         let newDisc = DiscController.shared.createDisc(brand: brand, mold: mold, color: colorTextField.text, plastic: plasticTextField.text, flightPath: flightPathText, run: run, discImage: discImage)
         
+        CollectionController.shared.fetchCollection(for: UserDefaults.standard.value(forKey: "userID") as! String) { (result) in
+            switch result {
+                
+            case .success(let collection):
+                collectionToUpdate = collection
+            case .failure(let error):
+                print(error.errorDescription)
+            }
+        }
+        
+//        CollectionController.shared.updateCollection(collectionToUpdate, completion: )
+//        
         
         DiscController.shared.saveDisc(disc: newDisc){ result in
             DispatchQueue.main.async {
@@ -76,7 +90,7 @@ extension CreateDiscViewController: UIPickerViewDelegate, UIPickerViewDataSource
         flightPathPickerView.dataSource = self
         flightPathPickerView.delegate = self
     }
-
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 4
     }
@@ -89,7 +103,7 @@ extension CreateDiscViewController: UIPickerViewDelegate, UIPickerViewDataSource
         } else if component == 2 {
             return turnPickerData.count
         }
-            return fadePickerData.count
+        return fadePickerData.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -100,7 +114,7 @@ extension CreateDiscViewController: UIPickerViewDelegate, UIPickerViewDataSource
         } else if component == 2 {
             return turnPickerData[row]
         }
-            return fadePickerData[row]
+        return fadePickerData[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -108,7 +122,7 @@ extension CreateDiscViewController: UIPickerViewDelegate, UIPickerViewDataSource
         var glide: String = glidePickerData[pickerView.selectedRow(inComponent: 1)].description
         var turn: String = turnPickerData[pickerView.selectedRow(inComponent: 2)].description
         var fade: String = fadePickerData[pickerView.selectedRow(inComponent: 3)].description
-
+        
         self.flightPathText = (speed + " | " + glide + " | " + turn + " | " + fade)
         print("didSelectRow")
     }

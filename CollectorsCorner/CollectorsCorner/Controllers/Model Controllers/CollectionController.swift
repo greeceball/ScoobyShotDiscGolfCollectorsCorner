@@ -75,7 +75,7 @@ class CollectionController {
         }
     }
     
-    func fetchCollection(for user: User, completion: @escaping (Result<[Disc]?, DiscError>) -> Void) {
+    func fetchCollection(for user: String, completion: @escaping (Result<[Disc], DiscError>) -> Void) {
         
         let predicate = NSPredicate(value: true)
         

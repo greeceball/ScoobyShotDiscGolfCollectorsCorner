@@ -9,10 +9,9 @@ import UIKit
 class UserController {
     // Mark: - Shared instance
     static let shared = UserController()
-    
+    var currentUser: User? = StoredVariables.shared.userInfo["user"] as? User
     // Mark: - Source of Truth and Properties
     var collectors: [User] = []
-    var currentUser: User?
     let publicDB = CKContainer.default().publicCloudDatabase
     let privateDB = CKContainer.default().privateCloudDatabase
     
@@ -38,7 +37,7 @@ class UserController {
             }
             // Unwrap the saved record, unwrap the user initialized from that record
             guard let record = record,
-                let user = User(ckRecord: record)
+                let _ = User(ckRecord: record)
                 else { return completion(false)}
             
             print("Created User: \(record.recordID.recordName) successfully")
@@ -48,13 +47,13 @@ class UserController {
     }
     
     // Mark: - Read
-    func fetchUser(completion: @escaping (Bool) -> Void) {
+    func fetchUser(completion: @escaping (Result<User, UserError>) -> Void) {
         // Fetch and Unwrap the appleUserRef to pass in for the predicate
         fetchAppleUserReference { (result) in
             switch result {
             case .success(let reference):
                 // Unwrap reference, and if it doesnt exist return completion failure due to no user logged in
-                guard let reference = reference else { return completion(false)}
+                guard let reference = reference else { return completion(.failure(.couldNotUnwrap))}
                 // Init the predicate needed bu the query
                 let predicate = NSPredicate(value: true)
                 //let predicate = NSPredicate(format: "%K == %@", argumentArray: [UserConstants.appleUserRefKey, reference])
@@ -64,15 +63,14 @@ class UserController {
                 self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
                     // Handle optional error
                     if let error = error {
-                        return completion(false)
+                        return completion(.failure(.ckError(error)))
                     }
                     // Unwrap the record and foundUser initialized from the record
                     guard let record = records?.first,
                         let foundUser = User(ckRecord: record)
-                        else { return completion(false)}
-                    self.currentUser = foundUser
+                        else { return completion(.failure(.couldNotUnwrap))}
                     print("Fetched User: \(record.recordID.recordName) successfully")
-                    completion(true)
+                    completion(.success(foundUser))
                 }
             case .failure(let error):
                 print(error.localizedDescription)

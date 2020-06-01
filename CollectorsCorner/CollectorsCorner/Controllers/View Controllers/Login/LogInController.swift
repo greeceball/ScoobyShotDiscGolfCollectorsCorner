@@ -54,6 +54,31 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     }
     
     func finishLoggingIn() {
+        
+        var currentUser: String = ""
+        
+        UserController.shared.fetchUser(completion: { (result) in
+            switch result {
+   
+            case .success(let user):
+                currentUser = user.username.description
+                StoredVariables.shared.userInfo["user"] = currentUser
+            case .failure(let error):
+                print(error.errorDescription)
+            }
+        })
+        
+        CollectionController.shared.fetchCollection(for: currentUser) { (result) in
+            switch result {
+                
+            case .success(let collection):
+                StoredVariables.shared.userInfo["collection"] = collection
+            case .failure(let error):
+                print(error.errorDescription)
+            }
+        }
+         
+        
         performSegue(withIdentifier: "toMainVC", sender: nil)
     }
     
@@ -85,6 +110,8 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
                         switch result {
                         case true:
                             self.user = user
+                            StoredVariables.shared.userInfo["user"] = user
+                            StoredVariables.shared.userInfo["collection"] = userCollection
                             UserDefaults.standard.set(userCollection.collectionCKRecordID.recordName, forKey: "userCollectionID")
                             
                             CollectionController.shared.saveCollection(collection: userCollection) { (result) in

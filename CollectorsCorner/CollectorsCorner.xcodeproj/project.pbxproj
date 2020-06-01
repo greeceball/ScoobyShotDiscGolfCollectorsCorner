@@ -10,8 +10,8 @@
 		3404C7ED2475E0620069AFBC /* MyCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3404C7EC2475E0620069AFBC /* MyCollection.storyboard */; };
 		3404C7EF2475E07A0069AFBC /* Collections.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3404C7EE2475E07A0069AFBC /* Collections.storyboard */; };
 		3404C7F32476DA7D0069AFBC /* CollectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404C7F22476DA7D0069AFBC /* CollectionsTableViewController.swift */; };
-		3404C7F52476DDA90069AFBC /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404C7F42476DDA90069AFBC /* UserDefaults+Helpers.swift */; };
 		34174E3D24733DA000037961 /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34174E3C24733DA000037961 /* SearchableRecord.swift */; };
+		34185C1924802C0200405A4A /* StoredVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34185C1824802C0200405A4A /* StoredVariables.swift */; };
 		341EAC3A247D6FDA00761ECC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC39247D6FDA00761ECC /* ProfileViewController.swift */; };
 		341EAC3C247D715800761ECC /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC3B247D715800761ECC /* States.swift */; };
 		341EAC3E247D719C00761ECC /* Years.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EAC3D247D719C00761ECC /* Years.swift */; };
@@ -55,8 +55,8 @@
 		3404C7EC2475E0620069AFBC /* MyCollection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyCollection.storyboard; sourceTree = "<group>"; };
 		3404C7EE2475E07A0069AFBC /* Collections.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Collections.storyboard; sourceTree = "<group>"; };
 		3404C7F22476DA7D0069AFBC /* CollectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsTableViewController.swift; sourceTree = "<group>"; };
-		3404C7F42476DDA90069AFBC /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
 		34174E3C24733DA000037961 /* SearchableRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
+		34185C1824802C0200405A4A /* StoredVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredVariables.swift; sourceTree = "<group>"; };
 		341EAC39247D6FDA00761ECC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		341EAC3B247D715800761ECC /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		341EAC3D247D719C00761ECC /* Years.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Years.swift; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 				D95F112CB0830E92F32D0390 /* DiscError.swift */,
 				34174E3C24733DA000037961 /* SearchableRecord.swift */,
 				34CBCBD72475A3B9007A1BAB /* ReportError.swift */,
-				3404C7F42476DDA90069AFBC /* UserDefaults+Helpers.swift */,
+				34185C1824802C0200405A4A /* StoredVariables.swift */,
 			);
 			path = "Helpers + Extensions";
 			sourceTree = "<group>";
@@ -397,6 +397,7 @@
 				346A0A4B2477146100DBC4C4 /* MyCollectionTableViewController.swift in Sources */,
 				34562C722475935100EE52D3 /* ReportController.swift in Sources */,
 				3404C7F32476DA7D0069AFBC /* CollectionsTableViewController.swift in Sources */,
+				34185C1924802C0200405A4A /* StoredVariables.swift in Sources */,
 				349BA1AD2444D2790099A2A0 /* Disc.swift in Sources */,
 				349BA18A2444D0D50099A2A0 /* AppDelegate.swift in Sources */,
 				344378F7247D7AD20096F69D /* DiscDetailsViewController.swift in Sources */,
@@ -416,7 +417,6 @@
 				D95F1278B5529FB10DE646FD /* DiscController.swift in Sources */,
 				D95F1CC014429218374DCD11 /* CollectionController.swift in Sources */,
 				34CBCBD82475A3B9007A1BAB /* ReportError.swift in Sources */,
-				3404C7F52476DDA90069AFBC /* UserDefaults+Helpers.swift in Sources */,
 				341EAC3E247D719C00761ECC /* Years.swift in Sources */,
 				34562C70247582C300EE52D3 /* Report.swift in Sources */,
 				D95F1AC68D8D16DF851C99C9 /* UserError.swift in Sources */,
