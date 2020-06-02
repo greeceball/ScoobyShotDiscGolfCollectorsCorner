@@ -17,7 +17,7 @@ class CollectionController {
     func createCollection(userName: String, stateOfOrgin: String, numOfYearsCollecting: Int, collectionImage: UIImage?) -> Collection {
         
         // Create new collection by initializing it and setting values
-        let newCollection = Collection(collectionImage: collectionImage, collectorsUserName: userName, collectorStateOfOrigin: stateOfOrgin, collectorNumOfYearsCollecting: numOfYearsCollecting)
+        let newCollection = Collection(collectionImage: collectionImage, collectorsUserName: userName, collectorStateOfOrigin: stateOfOrgin, collectorNumOfYearsCollecting: numOfYearsCollecting, discs: [])
 
         return newCollection
     }
@@ -75,7 +75,7 @@ class CollectionController {
         }
     }
     
-    func fetchCollection(for user: String, completion: @escaping (Result<[Disc], DiscError>) -> Void) {
+    func fetchCollection(for user: String, completion: @escaping (Result<[Collection], DiscError>) -> Void) {
         
         let predicate = NSPredicate(value: true)
         
@@ -90,7 +90,7 @@ class CollectionController {
             
             print("Loaded Collection Successfully")
             
-            let collection = records.compactMap({ Disc(ckRecord: $0)})
+            let collection = records.compactMap({ Collection(ckRecord: $0) })
             
             completion(.success(collection))
         }

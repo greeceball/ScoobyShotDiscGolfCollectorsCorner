@@ -42,7 +42,7 @@ class CreateDiscViewController: UIViewController {
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        var collectionToUpdate: [Disc] = []
+        var collectionToUpdate: [String] = []
         guard let brand = brandTextField.text, !brand.isEmpty, let mold = moldTextField.text, !mold.isEmpty, let discImage = self.image else { return }
         let run = Int(runTextField.text!)
         
@@ -53,6 +53,7 @@ class CreateDiscViewController: UIViewController {
                 
             case .success(let collection):
                 collectionToUpdate = collection
+                collectionToUpdate.append(newDisc.discCKRecordID.recordName)
             case .failure(let error):
                 print(error.errorDescription)
             }

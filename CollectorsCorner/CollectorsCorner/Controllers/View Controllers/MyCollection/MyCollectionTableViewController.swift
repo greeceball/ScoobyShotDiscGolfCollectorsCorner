@@ -86,6 +86,7 @@ extension MyCollectionTableViewController {
                 
             case .success(let collection):
                 self.myCollection = collection
+                print("collection loaded")
                 self.updateViews()
             case .failure(let error):
                 print(error.errorDescription)
