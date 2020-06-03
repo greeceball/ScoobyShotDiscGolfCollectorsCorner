@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class CreateDiscViewController: UIViewController {
     
@@ -41,8 +42,8 @@ class CreateDiscViewController: UIViewController {
     }
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
-        
-        var collectionToUpdate: [String] = []
+        var collectionFromCK: [Collection] = []
+        var collectionToUpdate: [CKRecord.ID] = []
         guard let brand = brandTextField.text, !brand.isEmpty, let mold = moldTextField.text, !mold.isEmpty, let discImage = self.image else { return }
         let run = Int(runTextField.text!)
         
@@ -52,15 +53,25 @@ class CreateDiscViewController: UIViewController {
             switch result {
                 
             case .success(let collection):
-                collectionToUpdate = collection
-                collectionToUpdate.append(newDisc.discCKRecordID.recordName)
+                guard let collection = collection else { return }
+                guard let discs = collection.discs else { return }
+                collectionToUpdate = discs
+                collectionToUpdate.append(newDisc.discCKRecordID)
+                collection.discs = collectionToUpdate
+                CollectionController.shared.updateCollection(collection) { (result) in
+                    switch result {
+                        
+                    case .success(_):
+                        break
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+                
             case .failure(let error):
                 print(error.errorDescription)
             }
-        }
-        
-//        CollectionController.shared.updateCollection(collectionToUpdate, completion: )
-//        
+        } 
         
         DiscController.shared.saveDisc(disc: newDisc){ result in
             DispatchQueue.main.async {

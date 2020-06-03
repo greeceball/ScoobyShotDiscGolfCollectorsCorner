@@ -13,29 +13,39 @@ class MyCollectionTableViewController: UITableViewController {
     //MARK: - Properties and outlets
     @IBOutlet var myCollectionTableView: UITableView!
     var myCollection: [Disc] = []
+    var refresh: UIRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMyCollection()
+        setupViews()
     }
     
+    func setupViews() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        refresh.attributedTitle = NSAttributedString(string: "Pull to update My Collection")
+        refresh.addTarget(self, action: #selector(loadMyCollection), for: .valueChanged)
+        tableView.addSubview(refresh)
+    }
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return myCollection.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "discCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "discCell", for: indexPath) as? DiscCell else { return UITableViewCell() }
         
-        // Configure the cell...
+        let disc = myCollection[indexPath.row]
+        cell.setDisc(disc: disc)
         
         return cell
     }
@@ -80,12 +90,26 @@ class MyCollectionTableViewController: UITableViewController {
 
 extension MyCollectionTableViewController {
     
-    func loadMyCollection() {
+    @objc func loadMyCollection() {
         CollectionController.shared.fetchCollection(for: UserDefaults.standard.value(forKey: "userID") as! String) { (result) in
             switch result {
                 
             case .success(let collection):
-                self.myCollection = collection
+                guard let collection = collection else { return }
+                guard let discs = collection.discs else { return }
+                for disc in discs {
+                    DiscController.shared.loadDisc(discId: disc) { (result) in
+                        switch result {
+                            
+                        case .success(let disc):
+                            guard let disc = disc else { return }
+                            self.myCollection.append(disc)
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+                
                 print("collection loaded")
                 self.updateViews()
             case .failure(let error):

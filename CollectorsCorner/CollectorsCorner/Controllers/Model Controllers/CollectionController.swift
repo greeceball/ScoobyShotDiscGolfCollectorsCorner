@@ -75,23 +75,26 @@ class CollectionController {
         }
     }
     
-    func fetchCollection(for user: String, completion: @escaping (Result<[Collection], DiscError>) -> Void) {
+    func fetchCollection(for user: String, completion: @escaping (Result<Collection?, DiscError>) -> Void) {
         
         let predicate = NSPredicate(value: true)
         
         let query = CKQuery(recordType: CollectionStrings.recordTypeKey, predicate: predicate)
         
-        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+        publicDB.perform(query, inZoneWith: nil) { (record, error) in
             if let error = error {
                 return completion(.failure(.ckError(error)))
             }
             
-            guard let records = records else { return completion(.failure(.couldNotUnwrap))}
+            guard let record = record else { return completion(.failure(.couldNotUnwrap))}
             
             print("Loaded Collection Successfully")
             
-            let collection = records.compactMap({ Collection(ckRecord: $0) })
+            let recordToConvert = record[0]
+            let collection = Collection(ckRecord: recordToConvert)
+            //let collection = record.compactMap({ Collection(ckRecord: $0) })
             
+            //let collectionToReturn = Collection(collection)
             completion(.success(collection))
         }
     }

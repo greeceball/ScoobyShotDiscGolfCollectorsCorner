@@ -19,15 +19,30 @@ class DiscCell: UITableViewCell {
     @IBOutlet weak var runLabel: UILabel!
     @IBOutlet weak var flightPathLabel: UILabel!
     
+    var disc: Disc?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
+    
+    func setDisc(disc: Disc) {
+        self.disc = disc
+        updateUI()
+    }
+    
+    func updateUI() {
+        guard let disc = disc else { return }
+        
+        discImageView.image = disc.discImage
+        brandLabel.text = disc.brand
+        moldLabel.text = disc.mold
+        colorLabel.text = disc.color
+        plasticLabel.text = disc.plastic
+        runLabel.text = String(describing: disc.run)
+        flightPathLabel.text = disc.flightPath
+    }
 }
