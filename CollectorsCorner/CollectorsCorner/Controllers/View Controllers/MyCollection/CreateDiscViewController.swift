@@ -58,6 +58,7 @@ class CreateDiscViewController: UIViewController {
                 collectionToUpdate = discs
                 collectionToUpdate.append(newDisc.discCKRecordID)
                 collection.discs = collectionToUpdate
+                print(collection)
                 CollectionController.shared.updateCollection(collection) { (result) in
                     switch result {
                         

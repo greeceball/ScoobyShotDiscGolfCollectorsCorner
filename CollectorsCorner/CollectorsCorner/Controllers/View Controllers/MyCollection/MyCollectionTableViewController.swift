@@ -22,6 +22,7 @@ class MyCollectionTableViewController: UITableViewController {
     }
     
     func setupViews() {
+        
         tableView.delegate = self
         tableView.dataSource = self
         refresh.attributedTitle = NSAttributedString(string: "Pull to update My Collection")
@@ -95,15 +96,18 @@ extension MyCollectionTableViewController {
             switch result {
                 
             case .success(let collection):
-                guard let collection = collection else { return }
-                guard let discs = collection.discs else { return }
-                for disc in discs {
+                guard let collection = collection else {
+                    print("not loaded"); return }
+
+                guard let myDiscs = collection.discs else { return }
+                for disc in myDiscs {
                     DiscController.shared.loadDisc(discId: disc) { (result) in
                         switch result {
                             
                         case .success(let disc):
                             guard let disc = disc else { return }
                             self.myCollection.append(disc)
+                            self.updateViews()
                         case .failure(let error):
                             print(error.localizedDescription)
                         }

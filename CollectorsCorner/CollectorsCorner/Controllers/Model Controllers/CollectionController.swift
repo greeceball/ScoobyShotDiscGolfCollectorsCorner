@@ -91,7 +91,7 @@ class CollectionController {
             print("Loaded Collection Successfully")
             
             let recordToConvert = record[0]
-            let collection = Collection(ckRecord: recordToConvert)
+            guard let collection = Collection(ckRecord: recordToConvert) else {return completion(.failure(.couldNotUnwrap))}
             //let collection = record.compactMap({ Collection(ckRecord: $0) })
             
             //let collectionToReturn = Collection(collection)

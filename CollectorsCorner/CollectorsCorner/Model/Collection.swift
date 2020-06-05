@@ -62,7 +62,7 @@ class Collection {
         self.collectorStateOfOrigin = collectorStateOfOrigin
         self.collectorNumOfYearsCollecting = collectorNumOfYearsCollecting ?? 0
         self.collectionCKRecordID = recordID
-        self.discs = discs
+        self.discs = discs ?? []
         self.collectionImage = collectionImage
         
     }
@@ -98,7 +98,7 @@ extension CKRecord {
             CollectionStrings.collectorUserNameKey : collection.collectorUserName,
             CollectionStrings.collectorStateOfOriginKey : collection.collectorStateOfOrigin as Any,
             CollectionStrings.collectorNumOfYearsCollectingKey : collection.collectorNumOfYearsCollecting,
-            CollectionStrings.discsKey : collection.discs as Any
+            CollectionStrings.discsKey : String(describing: collection.discs) as NSString
             
         ])
         
