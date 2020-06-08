@@ -22,6 +22,7 @@ struct DiscStrings {
     fileprivate static let runKey = "run"
     fileprivate static let photoAssetKey = "photoAsset"
     fileprivate static let collectionRecordIDKey = "collectionRecordID"
+    fileprivate static let collectionReferenceKey = ""
     fileprivate static let discIDKey = "discID"
 }
 

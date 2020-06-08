@@ -20,12 +20,13 @@ struct CollectionStrings {
     fileprivate static let photoAssetKey = "photoAsset"
     fileprivate static let collectionCKRecordIDKey = "collectionID"
     fileprivate static let discsKey = "discs"
+    fileprivate static let userReferenceKey = "userReference"
 }
 
 class Collection {
     
     var user: User?
-    var discs: [CKRecord.ID]?
+    var discs: [String]?
     let collectorUserName: String
     let collectorStateOfOrigin: String?
     var collectorNumOfYearsCollecting: Int = 0
@@ -56,13 +57,13 @@ class Collection {
         }
     }
     
-    init(collectionImage: UIImage?, collectorsUserName: String, collectorStateOfOrigin: String?, collectorNumOfYearsCollecting: Int?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), discs: [CKRecord.ID]?) {
+    init(collectionImage: UIImage?, collectorsUserName: String, collectorStateOfOrigin: String?, collectorNumOfYearsCollecting: Int?, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), discs: [String]? ) {
         
         self.collectorUserName = collectorsUserName
         self.collectorStateOfOrigin = collectorStateOfOrigin
         self.collectorNumOfYearsCollecting = collectorNumOfYearsCollecting ?? 0
         self.collectionCKRecordID = recordID
-        self.discs = discs ?? []
+        self.discs = discs
         self.collectionImage = collectionImage
         
     }
@@ -72,7 +73,8 @@ extension Collection {
     convenience init?(ckRecord: CKRecord) {
         guard let collectorUserName = ckRecord[CollectionStrings.collectorUserNameKey] as? String,
             let collectorStateOfOrigin = ckRecord[CollectionStrings.collectorStateOfOriginKey] as? String,
-            let collectorNumOfYearsCollecting = ckRecord[CollectionStrings.collectorNumOfYearsCollectingKey] as? Int, let discs = ckRecord[CollectionStrings.discsKey] as? [CKRecord.ID]
+            let collectorNumOfYearsCollecting = ckRecord[CollectionStrings.collectorNumOfYearsCollectingKey] as? Int,
+            let discs = ckRecord[CollectionStrings.discsKey] as? [String]
             else { return nil }
         
         var foundPhoto: UIImage?

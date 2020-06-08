@@ -13,7 +13,7 @@ import AuthenticationServices
 struct UserConstants {
     
     static let TypeKey = "User"
-    //static let appleUserRefKey = "appleUserRef"
+    static let appleUserRefKey = "appleUserRef"
     //fileprivate static let profileImageKey = "profileImage"
     fileprivate static let usernameKey = "userName"
     fileprivate static let firstNameKey = "firstName"
@@ -31,8 +31,9 @@ class User {
     var email: String
     var myCollection: String
     let userCKRecordID: CKRecord.ID
+    var appleUserRef: CKRecord.Reference
     
-    init(username: String, firstName: String, lastName: String, email: String, ckRecordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), myCollection: String?) {
+    init(username: String, firstName: String, lastName: String, email: String, ckRecordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), myCollection: String?, appleUserReference: CKRecord.Reference) {
         
         self.firstName = firstName
         self.lastName = lastName
@@ -40,6 +41,7 @@ class User {
         self.email = email
         self.userCKRecordID = ckRecordID
         self.myCollection = myCollection ?? ""
+        self.appleUserRef = appleUserReference
     }
     
     convenience init?(ckRecord: CKRecord) {
@@ -47,10 +49,11 @@ class User {
             let firstName = ckRecord[UserConstants.firstNameKey] as? String,
             let lastName = ckRecord[UserConstants.lastNameKey] as? String,
             let email = ckRecord[UserConstants.emailKey] as? String,
-            let myCollection = ckRecord[UserConstants.collectionIDKey] as? String
+            let myCollection = ckRecord[UserConstants.collectionIDKey] as? String,
+            let appleUserRef = ckRecord[UserConstants.appleUserRefKey] as? CKRecord.Reference
             else { return nil }
 
-        self.init(username: username, firstName: firstName, lastName: lastName, email: email, myCollection: myCollection)
+        self.init(username: username, firstName: firstName, lastName: lastName, email: email, myCollection: myCollection, appleUserReference: appleUserRef)
     }
 }
 
@@ -63,6 +66,7 @@ extension  CKRecord {
             UserConstants.lastNameKey : user.lastName,
             UserConstants.emailKey : user.email,
             UserConstants.collectionIDKey : user.myCollection,
+            UserConstants.appleUserRefKey : user.appleUserRef
         ])
     }
 }
