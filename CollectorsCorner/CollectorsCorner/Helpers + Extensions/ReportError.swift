@@ -17,11 +17,11 @@ enum ReportError: Error {
         switch self {
 
         case .ckError(let error):
-        return error.localizedDescription
+            return error.localizedDescription
         case .couldNotUnwrap:
-        return "Unable to find information"
+            return "Unable to find information"
         case .noUserLoggedIn:
-        return "No user is logged in"
+            return "No user is logged in"
         }
     }
 }

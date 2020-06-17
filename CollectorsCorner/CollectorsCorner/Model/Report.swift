@@ -24,11 +24,9 @@ class Report {
     let recordID: CKRecord.ID
     let timeStamp: Date
     let reportedBy: CKRecord.Reference
-    
     let userReference: CKRecord.Reference
     let collectionReference: CKRecord.Reference?
     let discReference: CKRecord.Reference?
-    
     
     init(user: CKRecord.Reference, collection: CKRecord.Reference?, disc: CKRecord.Reference?, ckRecordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), timeStamp: Date = Date(), reportedBy: CKRecord.Reference) {
         
@@ -38,7 +36,6 @@ class Report {
         self.userReference = user
         self.collectionReference = collection ?? nil
         self.discReference = disc ?? nil
-        
     }
 }
 
@@ -49,7 +46,6 @@ extension Report {
             let collectionReference = ckRecord[ConstantFlaggedContent.CollectionKey] as? CKRecord.Reference?,
             let discReference = ckRecord[ConstantFlaggedContent.DiscKey] as? CKRecord.Reference?,
             let timeStamp = ckRecord[ConstantFlaggedContent.timestampKey] as? Date else { return nil }
-        
         
         self.init(user: userReference!, collection: collectionReference, disc: discReference, timeStamp: timeStamp, reportedBy: reportedBy!)
     }
@@ -66,7 +62,6 @@ extension CKRecord {
             ConstantFlaggedContent.CollectionKey : report.collectionReference as Any,
             ConstantFlaggedContent.DiscKey : report.discReference as Any,
             ConstantFlaggedContent.timestampKey : report.timeStamp as Date
-            
         ])
     }
 }

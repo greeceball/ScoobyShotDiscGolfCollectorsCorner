@@ -12,5 +12,4 @@ class StoredVariables {
     
     static let shared = StoredVariables()
     var userInfo: [String: Any] = [:]
-    
 }

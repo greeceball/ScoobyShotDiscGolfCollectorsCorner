@@ -12,7 +12,6 @@ import AuthenticationServices
 class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
     
     //MARK: - Properties and Outlets
-    
     @IBOutlet weak var logInStackView: UIStackView!
     
     let defaults = UserDefaults.standard
@@ -77,8 +76,6 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
                 print(error.errorDescription)
             }
         }
-         
-        
         performSegue(withIdentifier: "toMainVC", sender: nil)
     }
     
@@ -107,7 +104,9 @@ class LogInViewController: UIViewController, ASAuthorizationControllerDelegate {
                     let user = UserController.shared.createUserWith(profileImage: nil, username: userName, firstName: firstName, lastName: lastName, email: userEmail, state: "", yearsCollecting: 0, myCollection: "\(userCollection.collectionCKRecordID.recordName)")
                     
                     UserController.shared.saveUser(user: user) { (result) in
+                        
                         switch result {
+                            
                         case true:
                             self.user = user
                             StoredVariables.shared.userInfo["user"] = user

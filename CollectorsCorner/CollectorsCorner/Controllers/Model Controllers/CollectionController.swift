@@ -7,6 +7,7 @@ import CloudKit
 import UIKit
 
 class CollectionController {
+    
     // Mark: - Source of Truth and Shared instance
     var collectionsArray: [Disc?] = []
     static let shared = CollectionController()
@@ -36,9 +37,7 @@ class CollectionController {
             }
             
             // Unwrap record, and savedCollection. set their values or return failure result
-            guard let record = record,
-            let savedCollection = Collection(ckRecord: record)
-                else { return completion(.failure(.couldNotUnwrap))}
+            guard let record = record, let savedCollection = Collection(ckRecord: record) else { return completion(.failure(.couldNotUnwrap))}
             // Otherwise print success message and return completion success
             print("Saved Collection: \(record.recordID.recordName) successfully.")
             completion(.success(savedCollection))
@@ -78,10 +77,10 @@ class CollectionController {
     func fetchCollection(for user: String, completion: @escaping (Result<Collection?, DiscError>) -> Void) {
         
         let predicate = NSPredicate(value: true)
-        
         let query = CKQuery(recordType: CollectionStrings.recordTypeKey, predicate: predicate)
         
         publicDB.perform(query, inZoneWith: nil) { (record, error) in
+        
             if let error = error {
                 return completion(.failure(.ckError(error)))
             }
@@ -93,7 +92,6 @@ class CollectionController {
             let recordToConvert = record[0]
             guard let collection = Collection(ckRecord: recordToConvert) else {return completion(.failure(.couldNotUnwrap))}
             //let collection = record.compactMap({ Collection(ckRecord: $0) })
-            
             //let collectionToReturn = Collection(collection)
             completion(.success(collection))
         }

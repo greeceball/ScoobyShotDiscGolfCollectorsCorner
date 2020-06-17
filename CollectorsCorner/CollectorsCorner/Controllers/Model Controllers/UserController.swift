@@ -7,9 +7,11 @@ import CloudKit
 import UIKit
 
 class UserController {
+    
     // Mark: - Shared instance
     static let shared = UserController()
     var currentUser: User? = StoredVariables.shared.userInfo["user"] as? User
+    
     // Mark: - Source of Truth and Properties
     var collectors: [User] = []
     let publicDB = CKContainer.default().publicCloudDatabase
@@ -41,7 +43,6 @@ class UserController {
                 else { return completion(false)}
             
             print("Created User: \(record.recordID.recordName) successfully")
-            
             completion(true)
         }
     }
@@ -80,13 +81,14 @@ class UserController {
     
     // Mark: - Update
     func updateUser(_ user: User, completion: @escaping (Bool) -> Void){
-        let record = CKRecord(user: user)
         
+        let record = CKRecord(user: user)
         let operationUpdateUser = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
         
         operationUpdateUser.savePolicy = .changedKeys
         operationUpdateUser.qualityOfService = .userInteractive
         operationUpdateUser.modifyRecordsCompletionBlock = { (records, _, error) in
+            
             if let error = error {
                 return completion(false)
             }
@@ -99,6 +101,7 @@ class UserController {
         }
         publicDB.add(operationUpdateUser)
     }
+    
     // Mark: - Delete
     func delete(_ user: User, completion: @escaping (Bool) -> Void) {
         let operationDeleteUser = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [user.userCKRecordID])
@@ -106,6 +109,7 @@ class UserController {
         operationDeleteUser.savePolicy = .changedKeys
         operationDeleteUser.qualityOfService = .userInteractive
         operationDeleteUser.modifyRecordsCompletionBlock = {records, _, error in
+            
             if let error = error {
                 return completion(false)
             }
@@ -125,7 +129,6 @@ class UserController {
     func fetchUserFor(_ collection: Collection, completion: @escaping (Result<User, UserError>) -> Void) {
         
         let userID = collection.collectorUserName
-        
         let predicate = NSPredicate(format: "%K == %@", argumentArray: ["recordID", userID])
         let query = CKQuery(recordType: UserConstants.TypeKey, predicate: predicate)
         

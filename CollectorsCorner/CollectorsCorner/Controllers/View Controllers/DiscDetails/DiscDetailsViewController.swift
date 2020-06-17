@@ -22,7 +22,6 @@ class DiscDetailsViewController: UIViewController {
 
     var discToBeLoaded: Disc?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadViews(disc: discToBeLoaded)

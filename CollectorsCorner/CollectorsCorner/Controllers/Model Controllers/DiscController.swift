@@ -7,6 +7,7 @@ import CloudKit
 import UIKit
 
 class DiscController {
+    
     // Mark: - Shared instance
     static let shared = DiscController()
 
@@ -57,14 +58,13 @@ class DiscController {
             guard let disc = Disc(ckRecord: myRecord) else { return completion(.failure(.couldNotUnwrap))}
             
             completion(.success(disc))
-            
         }
     }
     
     // Mark: - Update
     func updateDisc(_ disc: Disc, completion: @escaping (Result<Disc?, DiscError>) -> Void) {
-        let record = CKRecord(disc: disc)
         
+        let record = CKRecord(disc: disc)
         let operationUpdate = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
         
         operationUpdate.savePolicy = .changedKeys
@@ -88,11 +88,13 @@ class DiscController {
         
     // Mark: - Delete
     func deleteDisc(_ disc: Disc, completion: @escaping (Result<Bool, DiscError>) -> Void) {
+        
         let operationDeleteDisc = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [disc.discCKRecordID])
         
         operationDeleteDisc.savePolicy = .changedKeys
         operationDeleteDisc.qualityOfService = .userInteractive
         operationDeleteDisc.modifyRecordsCompletionBlock = { records, _, error in
+            
             if let error = error {
                 return completion(.failure(.ckError(error)))
             }
@@ -106,5 +108,4 @@ class DiscController {
         }
         publicDB.add(operationDeleteDisc)
     }
-    
 }

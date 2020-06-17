@@ -9,6 +9,8 @@
 import UIKit
 
 class CollectionsCell: UITableViewCell {
+    
+    //MARK: - Outlets and Properties
     @IBOutlet weak var collectionImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!

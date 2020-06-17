@@ -35,11 +35,12 @@ class CreateDiscViewController: UIViewController {
         configView()
         loadCurrentUser()
         //loadPickerData()
-        
     }
+    
     func loadCurrentUser() {
         self.currentUser = TabBarController.shared.user
     }
+    
     //MARK: - Actions
     @IBAction func saveButtonTapped(_ sender: Any) {
         var collectionFromCK: [Collection] = []
@@ -53,13 +54,17 @@ class CreateDiscViewController: UIViewController {
             switch result {
                 
             case .success(let collection):
+                
                 guard let collection = collection else { return }
                 guard let discs = collection.discs else { return }
+                
                 collectionToUpdate = discs
                 collectionToUpdate.append(newDisc.discCKRecordID)
                 collection.discs = collectionToUpdate
                 print(collection)
+                
                 CollectionController.shared.updateCollection(collection) { (result) in
+                    
                     switch result {
                         
                     case .success(_):
@@ -80,9 +85,7 @@ class CreateDiscViewController: UIViewController {
             }
         }
     }
-    
-    
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPhotoPickerVC" {
             let destinationVC = segue.destination as? PhotoPickerViewController

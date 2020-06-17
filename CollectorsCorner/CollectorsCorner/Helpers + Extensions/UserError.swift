@@ -16,15 +16,15 @@ enum UserError: Error {
         switch self {
 
         case .ckError(let error):
-        return error.localizedDescription
+            return error.localizedDescription
         case .couldNotUnwrap:
-        return "Unable to find a user"
+            return "Unable to find a user"
         case .unexpectedRecordsFound:
-        return "Unexpected records were returned when trying to delete."
+            return "Unexpected records were returned when trying to delete."
         case .noUserLoggedIn:
-        return "There is currently no user logged in."
+            return "There is currently no user logged in."
         case .noUserForCollection:
-        return "No user was found to be associated with this collection."
+            return "No user was found to be associated with this collection."
         }
     }
 }

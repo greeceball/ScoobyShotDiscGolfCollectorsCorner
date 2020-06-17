@@ -20,17 +20,16 @@ class ReportController {
     func saveReport(user: User, collection: Collection?, disc: Disc?, reportedBy: User, completion: @escaping (Result<Report?, ReportError>) -> Void) {
         
         guard let currentUser = UserController.shared.currentUser else { return completion(.failure(.noUserLoggedIn))}
-        
         let reportedByReference = CKRecord.Reference(recordID: currentUser.userCKRecordID, action: .deleteSelf)
         let userReference = CKRecord.Reference(recordID: user.userCKRecordID, action: .deleteSelf)
         
         if collection == nil && disc == nil {
             
             let newReport = Report(user: userReference, collection: nil, disc: nil, reportedBy: reportedByReference)
-            
             let reportRecord = CKRecord(report: newReport)
             
             publicDB.save(reportRecord) { (record, error) in
+                
                 if let error = error {
                     return completion(.failure(.ckError(error)))
                 }
@@ -43,12 +42,11 @@ class ReportController {
         } else if disc == nil {
             
             let collectionsReference = CKRecord.Reference(recordID: collection!.collectionCKRecordID, action: .deleteSelf)
-            
             let newReport = Report(user: userReference, collection: collectionsReference, disc: nil, reportedBy: reportedByReference)
-            
             let reportRecord = CKRecord(report: newReport)
             
             publicDB.save(reportRecord) { (record, error) in
+                
                 if let error = error {
                     return completion(.failure(.ckError(error)))
                 }
@@ -59,10 +57,9 @@ class ReportController {
             }
             
         }else if collection == nil {
+            
             let discReference = CKRecord.Reference(recordID: disc!.discCKRecordID, action: .deleteSelf)
-            
             let newReport = Report(user: userReference, collection: nil, disc: discReference, reportedBy: reportedByReference)
-            
             let reportRecord = CKRecord(report: newReport)
             
             publicDB.save(reportRecord) { (record, error) in

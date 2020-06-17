@@ -16,15 +16,15 @@ enum DiscError: Error {
         switch self {
 
         case .ckError(let error):
-        return error.localizedDescription
+            return error.localizedDescription
         case .couldNotUnwrap:
-        return "Unable to find Disc."
+            return "Unable to find Disc."
         case .unexpectedRecordsFound:
-        return "Unexpected records were returned when trying to delete."
+            return "Unexpected records were returned when trying to delete."
         case .noUserLoggedIn:
-        return "There is currently no user logged in."
+            return "There is currently no user logged in."
         case .noCollectionForDisc:
-        return "No collection was found to be associated with this disc."
+            return "No collection was found to be associated with this disc."
         }
     }
 }
